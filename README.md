@@ -40,7 +40,6 @@ $ gulp build serve
 ### Targets
 Use `--dev` and `--prod` modifiers for development and production targets where `--dev` is the default modifier.
 
-**Samples**
 - `$ gulp build serve` is equivalent to `$ gulp build serve --dev`.
 - `$ gulp build serve --prod`.
 - `$ gulp unit` is equivalent to `$ gulp unit --dev`.
