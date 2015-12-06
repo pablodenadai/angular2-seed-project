@@ -1,5 +1,5 @@
 # Angular 2 - Seed Project
-> Easy to use seed project for Angular 2 app development.  
+> Light-weight and easy to use seed project for Angular 2 app development.
 
 ```
 Angular 2 is still in alpha and it shouldn't be used in production.
