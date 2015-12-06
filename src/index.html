@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<!-- inject:js -->
+	<!-- endinject -->
+
+	<!-- inject:css -->
+	<!-- endinject -->
+
+	</script>
+</head>
+<body>
+	<app>Loading...</app>
+
+	<script>
+		<!-- @if dev -->
+		System
+			.config({
+				packages: { 'js': { defaultExtension: 'js' } }
+			});
+
+		System
+			.import('js/app.js')
+			.catch(console.error.bind(console));
+		<!-- @endif -->
+
+		<!-- @if prod -->
+		System
+			.config({
+				bundles: { 'js/app.js': ['app'] }
+			});
+
+		System
+			.import('app')
+			.catch(console.error.bind(console));
+		<!-- @endif -->
+	</script>
+</body>
+</html>
