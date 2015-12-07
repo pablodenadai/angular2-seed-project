@@ -29,6 +29,9 @@ $ npm install
 $ gulp build serve
 ```
 
+Note: the `serve` task won't automaticaly launch the browser for you. 
+To view the app please open a new tab and go to `http://localhost:8080/`.
+
 ## Usage
 ### Tasks
 - `$ gulp clean`: Remove generated folders - `build`, `docs` and `coverage`.
