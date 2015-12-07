@@ -45,3 +45,6 @@ Use `--dev` and `--prod` modifiers for development and production targets where 
 
 - `$ gulp build serve` is equivalent to `$ gulp build serve --dev`.
 - `$ gulp build serve --prod`.
+
+## Enhancements
+- Expand app and use new Angular 2 components - Eg.  `HTTP` and `Router`.
