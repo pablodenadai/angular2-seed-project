@@ -42,5 +42,3 @@ Use `--dev` and `--prod` modifiers for development and production targets where 
 
 - `$ gulp build serve` is equivalent to `$ gulp build serve --dev`.
 - `$ gulp build serve --prod`.
-- `$ gulp unit` is equivalent to `$ gulp unit --dev`.
-- `$ gulp unit --prod`.
