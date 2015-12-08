@@ -2,7 +2,7 @@ import {bootstrap, Component, View} from 'angular2/angular2';
 
 import {TodoInput} from './todo/todo-input';
 import {TodoList} from './todo/todo-list';
-import {TodoService} from './shared/services/todo-service';
+import {TodoService} from './todo/todo-service';
 
 @Component({
 	selector: 'app'
