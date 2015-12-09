@@ -21,6 +21,12 @@ import {TodoService} from './shared/services/todo-service';
 export class App {
 	/**
 	 * This is a doc comment for `bar`.
+	 * @example This is a caption.
+	 * ```ts
+	 * var world: String = 'world';
+	 * var hello: String = 'Hello ' + world;
+	 * console.log(hello);
+	 * ```
 	 * @deprecated This is an example of the `deprecated` annotation tag.
 	 */
 	private bar: String = 'Todo';
