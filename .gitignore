@@ -1,7 +1,8 @@
-node_modules
+# Folders
+/node_modules
+/docs
+/build
+/coverage
 
-docs
-build
-coverage
-
-.DS_Store
+# Files
+npm-debug.log
