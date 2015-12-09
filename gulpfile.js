@@ -69,7 +69,7 @@ function less() {
 }
 
 function typedoc() {
-	return gulp.src('src/**/*.ts')
+	return gulp.src('src/assets/app/**/*.ts')
 		.pipe(plugins.typedoc({
 			module: 'commonjs',
 			target: 'es5',
@@ -79,7 +79,7 @@ function typedoc() {
 }
 
 function tslint() {
-	return gulp.src('src/**/*.ts')
+	return gulp.src('src/assets/app/**/*.ts')
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'));
 };
@@ -158,8 +158,8 @@ function protractor() {
 }
 
 function watch() {
-	gulp.watch('src/**/*.ts', gulp.series(tslint, ts, 'unit'));
-	gulp.watch('src/**/*.less', gulp.series(lesslint, less));
+	gulp.watch('src/assets/app/**/*.ts', gulp.series(tslint, ts, 'unit'));
+	gulp.watch('src/assets/less/**/*.less', gulp.series(lesslint, less));
 	gulp.watch('src/index.html', index);
 	gulp.watch('test/unit/**/*.spec.js', gulp.series('unit'));
 }
