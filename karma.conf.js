@@ -5,7 +5,7 @@
 
 module.exports = function(config) {
 	config.set({
-		basePath: '',
+		basePath: '.',
 
 		frameworks: ['jasmine'],
 
@@ -22,7 +22,7 @@ module.exports = function(config) {
 			{ pattern: 'build/js/**/*.js', included: false, watched: true },
 
 			/** Paths to support debugging with source maps in dev tools */
-			{ pattern: 'src/**/*.ts', included: false, watched: false },
+			{ pattern: 'src/assets/app/**/*.ts', included: false, watched: false },
 			{ pattern: 'test/**/*.js', included: false, watched: false }
 		],
 
@@ -38,7 +38,7 @@ module.exports = function(config) {
 			 * Do not include tests or libraries.
 			 * These files will be instrumented by Istanbul.
 			 */
-			'build/**/*.js': ['coverage']
+			'build/js/**/*.js': ['coverage']
 		 },
 
 		/** Optionally, configure the reporter */
