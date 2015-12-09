@@ -164,9 +164,13 @@ function watch() {
 	gulp.watch('test/unit/**/*.spec.js', gulp.series('unit'));
 }
 
+var history = require('connect-history-api-fallback');
 function livereload() {
 	return plugins.connect.server({
 		root: 'build',
-		livereload: true
+		livereload: true,
+		middleware: function(connect, opt) {
+			return [history()];
+		}
 	});
 }
