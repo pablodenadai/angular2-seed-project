@@ -18,7 +18,7 @@ Angular 2 is still in alpha and it shouldn't be used in production.
 - **Unit** and **E2E** test samples.
 - **Code-coverage** with TypeScript mapping.
 - **TypeScript** support - Code linting, sourcemaps and transpilation to JS ES5.
-- **LESS** support - Code linting, sourcemaps and transpilation to CSS.
+- **SASS** support - Code linting, sourcemaps and transpilation to CSS.
 - **TypeDoc** documentation generator.
 - **Development** and **production** environment targets.
 
@@ -47,7 +47,6 @@ Use `--dev` and `--prod` modifiers for development and production targets where 
 
 ## Enhancements
 - Expand app and use new Angular 2 components - Eg. `HTTP` and `Router`. See [angular2-tour-of-heroes](https://github.com/johnpapa/angular2-tour-of-heroes).
-- Replace `LESS` with `SASS`.
 - Upgrade `angular2` dependency to latest.
 - Remove  `remap-istanbul` dependency when Istanbul v1 is released as it'll have sourcemaps built-in.
 - Expand unit tests.
