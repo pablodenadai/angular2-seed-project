@@ -13,15 +13,14 @@ Angular 2 is still in alpha and it shouldn't be used in production.
 - E2E Testing: Protractor
 
 ## Features
-- Fully automated development workflow using Gulp.
-- Modular project structure.
-- Unit and E2E test samples.
-- Code-coverage with TypeScript mapping.
-- TypeScript support - Code linting, sourcemaps and transpilation to JS ES5.
-- LESS support - Code linting, sourcemaps and transpilation to CSS.
-- Watcher and live-reload support.
-- TypeDoc documentation generator.
-- Development and production environment targets.
+- Fully automated development workflow using **Gulp**.
+- **Modular** project structure.
+- **Unit** and **E2E** test samples.
+- **Code-coverage** with TypeScript mapping.
+- **TypeScript** support - Code linting, sourcemaps and transpilation to JS ES5.
+- **LESS** support - Code linting, sourcemaps and transpilation to CSS.
+- **TypeDoc** documentation generator.
+- **Development** and **production** environment targets.
 
 ## Install
 ```
@@ -29,7 +28,7 @@ $ npm install
 $ gulp build serve
 ```
 
-Note: the `serve` task won't automaticaly launch the browser for you. 
+Note: the `serve` task won't automatically launch the browser for you.
 To view the app please open a new tab and go to `http://localhost:8080/`.
 
 ## Usage
@@ -38,7 +37,7 @@ To view the app please open a new tab and go to `http://localhost:8080/`.
 - `$ gulp unit`: Run `Karma` against all `test/unit/*.spec.js` files. The project must have been previously built as test are ran against the `.js` transpiled files.
 - `$ gulp e2e`: Run `Protractor` against all `test/e2e/*.e2e.js` files. The project must be being served before running end-to-end tests.
 - `$ gulp build`: Create distribution package. See environment `targets` below.
-- `$ gulp serve`: Starts webserver and live-reload. See environment `targets` below.
+- `$ gulp serve`: Start web-server and live-reload. See environment `targets` below.
 
 ### Targets
 Use `--dev` and `--prod` modifiers for development and production targets where `--dev` is the default modifier.
@@ -47,4 +46,8 @@ Use `--dev` and `--prod` modifiers for development and production targets where 
 - `$ gulp build serve --prod`.
 
 ## Enhancements
-- Expand app and use new Angular 2 components - Eg.  `HTTP` and `Router`.
+- Expand app and use new Angular 2 components - Eg. `HTTP` and `Router`. See [angular2-tour-of-heroes](https://github.com/johnpapa/angular2-tour-of-heroes).
+- Replace `LESS` with `SASS`.
+- Upgrade `angular2` dependency to latest.
+- Remove  `remap-istanbul` dependency when Istanbul v1 is released as it'll have sourcemaps built-in.
+- Expand unit tests.
