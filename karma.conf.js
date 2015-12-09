@@ -22,7 +22,7 @@ module.exports = function(config) {
 			{ pattern: 'build/js/**/*.js', included: false, watched: true },
 
 			/** Paths to support debugging with source maps in dev tools */
-			{ pattern: 'src/assets/app/**/*.ts', included: false, watched: false },
+			{ pattern: 'src/app/**/*.ts', included: false, watched: false },
 			{ pattern: 'test/**/*.js', included: false, watched: false }
 		],
 
