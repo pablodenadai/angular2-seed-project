@@ -1,6 +1,6 @@
 import { it, describe, expect, inject, beforeEachProviders } from 'angular2/testing';
 
-import { TodoService } from 'base/build/js/shared/services/todo-service';
+import { TodoService } from 'base/build/js/todo/todo-service';
 
 describe('user service', () => {
   beforeEachProviders(() => [TodoService])

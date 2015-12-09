@@ -58,18 +58,18 @@ function lesslint() {
 }
 
 function less() {
-	return gulp.src('src/**/*.less')
+	return gulp.src('src/assets/sass/**/*.scss')
 		.pipe(plugins.rename({dirname: ''}))
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.init()))
-		.pipe(plugins.less())
+		.pipe(plugins.sass())
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.write()))
-		.pipe(plugins.size({ title: 'less' }))
+		.pipe(plugins.size({ title: 'sass' }))
 		.pipe(gulp.dest('build/css'))
 		.pipe(plugins.connect.reload());
 }
 
 function typedoc() {
-	return gulp.src('src/**/*.ts')
+	return gulp.src('src/assets/app/**/*.ts')
 		.pipe(plugins.typedoc({
 			module: 'commonjs',
 			target: 'es5',
@@ -79,7 +79,7 @@ function typedoc() {
 }
 
 function tslint() {
-	return gulp.src('src/**/*.ts')
+	return gulp.src('src/assets/app/**/*.ts')
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'));
 };
@@ -90,14 +90,14 @@ var tsProject = plugins.typescript.createProject('tsconfig.json', {
 });
 
 function ts() {
-	var tsResult = gulp.src('src/**/*.ts')
+	var tsResult = gulp.src('src/assets/app/**/*')
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.init()))
 		.pipe(plugins.typescript(tsProject));
 
 	return tsResult.js
 		.pipe(plugins.if(argv.prod, plugins.uglify()))
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.write('./', {
-			sourceRoot: __dirname + '/src'
+			sourceRoot: __dirname + '/src/assets/app'
 		})))
 		.pipe(plugins.size({ title: 'ts' }))
 		.pipe(gulp.dest('build/js'))
@@ -158,8 +158,8 @@ function protractor() {
 }
 
 function watch() {
-	gulp.watch('src/**/*.ts', gulp.series(tslint, ts, 'unit'));
-	gulp.watch('src/**/*.less', gulp.series(lesslint, less));
+	gulp.watch('src/assets/app/**/*.ts', gulp.series(tslint, ts, 'unit'));
+	gulp.watch('src/assets/less/**/*.less', gulp.series(lesslint, less));
 	gulp.watch('src/index.html', index);
 	gulp.watch('test/unit/**/*.spec.js', gulp.series('unit'));
 }
