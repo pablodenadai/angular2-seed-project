@@ -1,7 +1,9 @@
-// This setup is based on Julie Ralph's `ng2-test-seed` project.
-// See https://github.com/juliemr/ng2-test-seed
-// Hopefully Angular2 and Karma integration will be more seamless in the future.
-// Unit tests are currently only implemented to run again the development target.
+/**
+ * This setup is based on Julie Ralph's `ng2-test-seed` project.
+ * See https://github.com/juliemr/ng2-test-seed
+ * Hopefully Angular2 and Karma integration will be more seamless in the future.
+ * Unit tests are currently only implemented to run against the development target.
+ */
 
 module.exports = function(karma) {
 	var config = {
@@ -21,9 +23,11 @@ module.exports = function(karma) {
 			/** Paths loaded via module imports */
 			{ pattern: 'build/js/**/*.js', included: false, watched: true },
 
+			/** Paths to unit tests */
+			{ pattern: 'test/unit/**/*.spec.js', included: false, watched: false },
+
 			/** Paths to support debugging with source maps in dev tools */
-			{ pattern: 'src/app/**/*.ts', included: false, watched: false },
-			{ pattern: 'test/**/*.js', included: false, watched: false }
+			{ pattern: 'src/app/**/*.ts', included: false, watched: false }
 		],
 
 		exclude: [
