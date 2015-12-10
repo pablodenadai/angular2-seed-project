@@ -52,10 +52,11 @@ module.exports = function(config) {
 		colors: true,
 		logLevel: config.LOG_INFO,
 
-		// Angular2 require phantomjs2 instead of phantomjs (because of system.js imports)
-		// As phantomjs2 is pretty hard to setup due to some bugs the default browser is
-		// now 'Chrome', but you might change it to 'PhantomJS2'.
-		// You can also use both of them
+		/**
+		 * @param browsers {Array} List of browsers for Karma to run the tests against.
+		 * We can use `Chrome` or `PhantomJS2` out-of-the-box here.
+		 * Unfortunately `PhantomJS2` support is limited for Linux users or Travis CI.
+		 */
 		browsers: ['Chrome'],
 
 		autoWatch: false,

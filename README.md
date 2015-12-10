@@ -1,4 +1,7 @@
 # Angular 2 - Seed Project
+
+[![Join the chat at https://gitter.im/ghpabs/angular2-seed](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ghpabs/angular2-seed?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > Light-weight and easy to use seed project for Angular 2 app development.
 
 ```
@@ -50,3 +53,6 @@ Use `--dev` and `--prod` modifiers for development and production targets where 
 - Upgrade `angular2` dependency to latest.
 - Remove  `remap-istanbul` dependency when Istanbul v1 is released as it'll have sourcemaps built-in.
 - Expand unit tests.
+
+## Contributing
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. When submitting a PR, make sure that the commit messages match the [Angular conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
