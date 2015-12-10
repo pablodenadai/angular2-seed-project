@@ -1,6 +1,6 @@
 import {Component, View, NgFor} from 'angular2/angular2';
 
-import {TodoService} from '../shared/services/todo-service';
+import {TodoService} from './todo-service';
 
 @Component({
 	selector: 'todo-list'

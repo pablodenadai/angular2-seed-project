@@ -22,7 +22,7 @@ Angular 2 is still in alpha and it shouldn't be used in production.
 - **Unit** and **E2E** test samples.
 - **Code-coverage** with TypeScript mapping.
 - **TypeScript** support - Code linting, sourcemaps and transpilation to JS ES5.
-- **LESS** support - Code linting, sourcemaps and transpilation to CSS.
+- **SASS** support - Code linting, sourcemaps and transpilation to CSS.
 - **TypeDoc** documentation generator.
 - **Development** and **production** environment targets.
 
