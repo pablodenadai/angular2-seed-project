@@ -52,7 +52,12 @@ module.exports = function(config) {
 		colors: true,
 		logLevel: config.LOG_INFO,
 
-		browsers: ['PhantomJS2'],
+		/**
+		 * @param browsers {Array} List of browsers for Karma to run the tests against.
+		 * We can use `Chrome` or `PhantomJS2` out-of-the-box here.
+		 * Unfortunately `PhantomJS2` support is limited for Linux users or Travis CI.
+		 */
+		browsers: ['Chrome'],
 
 		autoWatch: false,
 		singleRun: true
