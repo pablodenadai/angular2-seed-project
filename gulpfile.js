@@ -31,8 +31,8 @@ gulp.task('e2e', gulp.series(
 
 gulp.task('build', gulp.series(
 	clean,
-	gulp.parallel(lesslint, tslint),
-	gulp.parallel(less, ts),
+	gulp.parallel(scsslint, tslint),
+	gulp.parallel(scss, ts),
 	lib,
 	index,
 	typedoc
@@ -51,14 +51,17 @@ function clean() {
 	return del(['docs', 'coverage', 'build']);
 }
 
-function lesslint() {
-	return gulp.src('src/**/*.less')
-		.pipe(plugins.recess())
-		.pipe(plugins.recess.reporter());
+function scsslint() {
+	return gulp.src('src/**/*.scss')
+		.pipe(plugins.sassLint({
+			config: '.sass-lint.yml'
+		}))
+		.pipe(plugins.sassLint.format())
+		.pipe(plugins.sassLint.failOnError())
 }
 
-function less() {
-	return gulp.src('src/sass/**/*.scss')
+function scss() {
+	return gulp.src('src/**/*.scss')
 		.pipe(plugins.rename({dirname: ''}))
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.init()))
 		.pipe(plugins.sass())
@@ -90,7 +93,7 @@ var tsProject = plugins.typescript.createProject('tsconfig.json', {
 });
 
 function ts() {
-	var tsResult = gulp.src('src/app/**/*')
+	var tsResult = gulp.src('src/app/**/*.ts')
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.init()))
 		.pipe(plugins.typescript(tsProject));
 
@@ -159,7 +162,7 @@ function protractor() {
 
 function watch() {
 	gulp.watch('src/app/**/*.ts', gulp.series(tslint, ts, 'unit'));
-	gulp.watch('src/less/**/*.less', gulp.series(lesslint, less));
+	gulp.watch('src/**/*.scss', gulp.series(scsslint, scss));
 	gulp.watch('src/index.html', index);
 	gulp.watch('test/unit/**/*.spec.js', gulp.series('unit'));
 }
