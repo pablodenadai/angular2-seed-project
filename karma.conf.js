@@ -3,8 +3,8 @@
 // Hopefully Angular2 and Karma integration will be more seamless in the future.
 // Unit tests are currently only implemented to run again the development target.
 
-module.exports = function(config) {
-	config.set({
+module.exports = function(karma) {
+	var config = {
 		basePath: '',
 
 		frameworks: ['jasmine'],
@@ -50,11 +50,25 @@ module.exports = function(config) {
 
 		port: 9876,
 		colors: true,
-		logLevel: config.LOG_INFO,
+		logLevel: karma.LOG_INFO,
 
-		browsers: ['PhantomJS2'],
+		/**
+		 * @param browsers {Array} List of browsers for Karma to run the tests against.
+		 * We can use `Chrome`, `Firefox` or `PhantomJS2` out-of-the-box here.
+		 * Unfortunately `PhantomJS2` support is limited for Linux users or Travis CI.
+		 *
+		 * Note: When running in Travis we set the browser to `Firefox` as `Chrome`
+		 * isn't available there.
+		 */
+		browsers: ['Chrome'],
 
 		autoWatch: false,
 		singleRun: true
-	});
+	};
+
+	if (process.env.TRAVIS) {
+		config.browsers = ['Firefox'];
+	}
+
+	karma.set(config);
 };
