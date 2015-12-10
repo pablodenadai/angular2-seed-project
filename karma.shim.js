@@ -65,5 +65,5 @@ function onlyAppFiles(filePath) {
 }
 
 function onlySpecFiles(path) {
-	return = /.spec\.js$/.test(path);
+	return /.spec\.js$/.test(path);
 }
