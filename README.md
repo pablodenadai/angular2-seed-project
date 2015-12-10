@@ -1,5 +1,6 @@
 # Angular 2 - Seed Project
 
+[![Build Status](https://travis-ci.org/ghpabs/angular2-seed.svg)](https://travis-ci.org/ghpabs/angular2-seed)
 [![Join the chat at https://gitter.im/ghpabs/angular2-seed](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ghpabs/angular2-seed?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > Light-weight and easy to use seed project for Angular 2 app development.
