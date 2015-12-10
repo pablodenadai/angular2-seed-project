@@ -49,11 +49,5 @@ Use `--dev` and `--prod` modifiers for development and production targets where 
 - `$ gulp build serve` is equivalent to `$ gulp build serve --dev`.
 - `$ gulp build serve --prod`.
 
-## Enhancements
-- Expand app and use new Angular 2 components - Eg. `HTTP` and `Router`. See [angular2-tour-of-heroes](https://github.com/johnpapa/angular2-tour-of-heroes).
-- Upgrade `angular2` dependency to latest.
-- Remove `remap-istanbul` dependency when Istanbul v1 is released as it'll have sourcemaps built-in.
-- Expand unit tests.
-
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. When submitting a PR, make sure that the commit messages match the [Angular conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit-message-format).
