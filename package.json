@@ -43,7 +43,7 @@
     "phantomjs": "^1.9.19",
     "remap-istanbul": "^0.4.0",
     "traceur": "0.0.93",
-    "tslint": "^3.2.0-dev.1",
+    "tslint": "3.2.0-dev.1",
     "typescript": "^1.8.0-dev.20151204",
     "yargs": "^3.31.0"
   }
