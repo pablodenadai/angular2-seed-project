@@ -28,6 +28,7 @@ Angular 2 is still in alpha and it shouldn't be used in production.
 
 ## Install
 ```
+$ git clone https://github.com/ghpabs/angular2-seed.git && cd angular2-seed
 $ npm install
 $ gulp build serve
 ```
