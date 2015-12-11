@@ -4,6 +4,7 @@ module.exports = {
 		includes: [
 			'build/lib/system.js',
 			'build/lib/angular2.dev.js',
+			'build/lib/router.dev.js',
 			'build/css/main.css'
 		],
 
@@ -11,7 +12,8 @@ module.exports = {
 		libs: {
 			js: [
 				'node_modules/systemjs/dist/system.js',
-				'node_modules/angular2/bundles/angular2.dev.js'
+				'node_modules/angular2/bundles/angular2.dev.js',
+				'node_modules/angular2/bundles/router.dev.js'
 			]
 		}
 	},
@@ -27,7 +29,8 @@ module.exports = {
 		libs: {
 			js: [
 				'node_modules/systemjs/dist/system.js',
-				'node_modules/angular2/bundles/angular2.min.js'
+				'node_modules/angular2/bundles/angular2.min.js',
+				'node_modules/angular2/bundles/router.min.js'
 			]
 		}
 	}

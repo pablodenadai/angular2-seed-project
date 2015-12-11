@@ -1,19 +1,11 @@
 import { it, describe, expect, inject, beforeEachProviders } from 'angular2/testing';
 
-import { TodoService } from 'base/build/js/todo/todo-service';
+import { HeroService } from 'base/build/js/hero/hero.service';
 
 describe('user service', () => {
-  beforeEachProviders(() => [TodoService])
+  beforeEachProviders(() => [HeroService])
 
-  it('should have 3 todos', inject([TodoService], (service) => {
-    expect(service.todos.length).toBe(3);
+  it('should have `getHero` method', inject([HeroService], (service) => {
+    expect(service.getHero).toBeDefined();
   }));
-
-  it('should add a new todo', inject([TodoService], (service) => {
-    expect(service.todos.length).toBe(3);
-
-    service.addTodo('test');
-    expect(service.todos.length).toBe(4);
-  }));
-
 });
