@@ -3,30 +3,29 @@ import {Router} from 'angular2/router';
 
 import {IHero} from './hero.interface';
 import {HeroService} from './hero.service';
-import {HeroDetailComponent} from './hero-detail.component';
 
 @Component({
   selector: 'my-heroes',
   template: `
-    <div>
-      <h2>My Heroes</h2>
-      <ul class="heroes">
-        <li *ngFor="#hero of heroes"
-          [class.selected]="hero === selectedHero"
-          (click)="onSelect(hero)">
-          <span class="badge">{{hero.id}}</span> {{hero.name}}
-        </li>
-      </ul>
-      <div *ngIf="selectedHero">
-        <h2>{{selectedHero.name | uppercase}} is my hero</h2>
-        <button (click)="gotoDetail()">View Details</button>
-      </div>
+    <h2>All Heroes</h2>
+
+    <div class="list-group">
+      <a *ngFor="#hero of heroes"
+        class="list-group-item"
+        [class.active]="hero === selectedHero"
+        (click)="onSelect(hero)">
+        {{ hero.name }}
+
+        <div *ngIf="hero === selectedHero">
+          <h2>{{ selectedHero.name | uppercase }} is my favourite hero!</h2>
+          <button class="btn btn-info-outline" (click)="gotoDetail(selectedHero)">View Details</button>
+        </div>
+      </a>
     </div>
-  `,
-  directives: [HeroDetailComponent]
+  `
 })
 export class HeroListComponent implements OnInit {
-  public heroes: IHero[];
+  public heroes: IHero[] = [];
   public selectedHero: IHero;
 
   constructor(
@@ -44,9 +43,9 @@ export class HeroListComponent implements OnInit {
     return this.heroes;
   }
 
-  gotoDetail() {
+  gotoDetail(hero: IHero) {
     this._router.navigate(['HeroDetail', {
-      id: this.selectedHero.id
+      id: hero.id
     }]);
   }
 
@@ -54,5 +53,7 @@ export class HeroListComponent implements OnInit {
     this.heroes = this.getHeroes();
   }
 
-  onSelect(hero: IHero) { this.selectedHero = hero; }
+  onSelect(hero: IHero) {
+    this.selectedHero = hero;
+  }
 }

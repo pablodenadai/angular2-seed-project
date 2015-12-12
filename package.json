@@ -11,6 +11,7 @@
   "author": "Pabs",
   "dependencies": {
     "angular2": "^2.0.0-alpha.52",
+    "bootstrap": "^4.0.0-alpha.2",
     "systemjs": "^0.19.6",
 
     "es6-promise": "^3.0.2",
