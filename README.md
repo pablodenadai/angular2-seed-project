@@ -24,8 +24,9 @@ Angular 2 is still in alpha and it shouldn't be used in production.
 - **Code coverage** report with TypeScript mapping.
 - **TypeScript** support - Linting, sourcemaps and transpilation to JS ES5.
 - **Sass** support - Linting, sourcemaps and transpilation to CSS.
-- **TypeDoc** documentation generator.
+- ~~**TypeDoc** documentation generator.~~ (Currently disabled. See issue [#26](https://github.com/ghpabs/angular2-seed/issues/26).)
 - **Development** and **production** environment targets.
+
 
 ## Install
 ```

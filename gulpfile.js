@@ -34,8 +34,8 @@ gulp.task('build', gulp.series(
 	gulp.parallel(scsslint, tslint),
 	gulp.parallel(scss, ts),
 	lib,
-	index,
-	typedoc
+	index
+	// typedoc
 ));
 
 gulp.task('serve', gulp.series(
@@ -122,8 +122,7 @@ function index() {
 
 	return gulp.src('src/index.html')
 		.pipe(plugins.inject(source, {
-			ignorePath: 'build',
-			addRootSlash: false
+			ignorePath: 'build'
 		}))
 		.pipe(plugins.preprocess({
 			context: argv
