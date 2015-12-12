@@ -12,7 +12,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
   template: `
     <div class="jumbotron">
       <h1 class="display-4">{{ title }}</h1>
-      <p class="lead">Light-weight and easy to use seed project for Angular 2 development.</p>
+      <p class="lead">Light-weight and easy to use seed project for Angular 2 apps.</p>
       <a class="btn btn-primary-outline" [routerLink]="['Dashboard']">Dashboard</a>
       <a class="btn btn-primary-outline" [routerLink]="['Heroes']">Heroes</a>
       <hr>
