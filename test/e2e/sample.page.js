@@ -3,7 +3,7 @@
 module.exports = function() {
 	this.header = {
 		getText: function() {
-			return getComponentText('app', 'h1');
+			return getComponentText('my-app', 'h1');
 		}
 	};
 };

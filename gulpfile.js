@@ -61,7 +61,7 @@ function scsslint() {
 }
 
 function scss() {
-	return gulp.src('src/**/*.scss')
+	return gulp.src('src/**/*.scss', { base: 'src/scss' })
 		.pipe(plugins.rename({dirname: ''}))
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.init()))
 		.pipe(plugins.sass())
@@ -122,8 +122,7 @@ function index() {
 
 	return gulp.src('src/index.html')
 		.pipe(plugins.inject(source, {
-			ignorePath: 'build',
-			addRootSlash: false
+			ignorePath: 'build'
 		}))
 		.pipe(plugins.preprocess({
 			context: argv
