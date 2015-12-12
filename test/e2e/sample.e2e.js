@@ -6,6 +6,6 @@ describe('Protractor Demo App', function() {
 	it('should have a title', function() {
 		browser.get('http://localhost:8080/');
 
-		expect(page.header.getText()).toEqual('Todo');
+		expect(page.header.getText()).toEqual('Tour of Heroes');
 	});
 });
