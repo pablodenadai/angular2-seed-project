@@ -10,10 +10,14 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 @Component({
   selector: 'my-app',
   template: `
-    <h1>{{title}}</h1>
-    <a [routerLink]="['Dashboard']">Dashboard</a>
-    <a [routerLink]="['Heroes']">Heroes</a>
-    <router-outlet></router-outlet>
+    <div class="jumbotron">
+      <h1 class="display-4">{{ title }}</h1>
+      <p class="lead">Light-weight and easy to use seed project for Angular 2 development.</p>
+      <a class="btn btn-primary-outline" [routerLink]="['Dashboard']">Dashboard</a>
+      <a class="btn btn-primary-outline" [routerLink]="['Heroes']">Heroes</a>
+      <hr>
+      <router-outlet></router-outlet>
+    </div>
   `,
   directives: [ROUTER_DIRECTIVES]
 })

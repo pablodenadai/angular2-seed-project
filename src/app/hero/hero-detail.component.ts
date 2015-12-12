@@ -8,14 +8,20 @@ import {HeroService} from './hero.service';
   selector: 'my-hero-detail',
   template: `
     <div *ngIf="hero">
-    	<h2>{{hero.name}} details!</h2>
-    	<div>
-    		<label>id: </label>{{hero.id}}</div>
-    	<div>
-    		<label>name: </label>
-    		<input [(ngModel)]="hero.name" placeholder="name"/>
-    	</div>
-    	<button (click)="goBack()">Back</button>
+      <h3>Hero: {{ hero.name }}</h3>
+
+      <form>
+        <fieldset class="form-group">
+          <label for="inputId">ID</label>
+          <input [(ngModel)]="hero.id" type="text" class="form-control" id="inputId" disabled>
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="inputName">Name</label>
+          <input [(ngModel)]="hero.name" type="text" class="form-control" id="inputName">
+        </fieldset>
+      </form>
+
+      <button class="btn btn-success-outline" (click)="goBack()">Back</button>
     </div>
   `,
   inputs: ['hero']

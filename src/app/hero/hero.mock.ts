@@ -1,13 +1,13 @@
 import { IHero } from './hero.interface';
 
 export var HEROES: IHero[] = [
-	{ id: 1, name: 'Mr. Nice' },
-	{ id: 2, name: 'Narco' },
-	{ id: 3, name: 'Bombasto' },
-	{ id: 4, name: 'Celeritas' },
-	{ id: 5, name: 'Magneta' },
-	{ id: 6, name: 'RubberMan' },
-	{ id: 7, name: 'Dynama' },
-	{ id: 8, name: 'Dr IQ' },
-	{ id: 9, name: 'Magma' }
+	{ id: 1, name: 'Andromeda' },
+	{ id: 2, name: 'Black Widow' },
+	{ id: 3, name: 'Storm' },
+	{ id: 4, name: 'The Green Lantern' },
+	{ id: 5, name: 'Steel' },
+	{ id: 6, name: 'Armor' },
+	{ id: 7, name: 'Astro Boy' },
+	{ id: 8, name: 'Batman' },
+	{ id: 9, name: 'Robin' }
 ];
