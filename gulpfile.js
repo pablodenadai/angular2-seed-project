@@ -122,7 +122,6 @@ function index() {
 
 	return gulp.src('src/index.html')
 		.pipe(plugins.inject(source, {
-			addPrefix: '.',
 			ignorePath: 'build',
 			addRootSlash: false
 		}))
