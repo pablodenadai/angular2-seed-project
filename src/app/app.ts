@@ -1,46 +1,47 @@
-import {bootstrap, Component, View} from 'angular2/angular2';
+import {Component} from 'angular2/core';
+import {bootstrap} from 'angular2/platform/browser';
+import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
-import {TodoInput} from './todo/todo-input';
-import {TodoList} from './todo/todo-list';
-import {TodoService} from './todo/todo-service';
+import {HeroService} from './hero/hero.service';
+import {HeroListComponent} from './hero/hero-list.component';
+import {HeroDetailComponent} from './hero/hero-detail.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 @Component({
-	selector: 'app'
+  selector: 'my-app',
+  template: `
+    <h1>{{title}}</h1>
+    <a [routerLink]="['Dashboard']">Dashboard</a>
+    <a [routerLink]="['Heroes']">Heroes</a>
+    <router-outlet></router-outlet>
+  `,
+  directives: [ROUTER_DIRECTIVES]
 })
-@View({
-	directives: [TodoInput, TodoList],
-	template: `
-		<div>
-			<h1>{{ bar }}</h1>
+/**
+ * @TODO: Review Angular2 router declaration.
+ * Currently it's all defined here in this one file and it's far from ideal.
+ * We need a more modular and scalable solution instead.
+ */
+@RouteConfig([
+  { path: '/dashboard', name: 'Dashboard', component: DashboardComponent, useAsDefault: true },
+  { path: '/heroes', name: 'Heroes', component: HeroListComponent },
+  { path: '/detail/:id', name: 'HeroDetail', component: HeroDetailComponent }
+])
+export class AppComponent {
+  /**
+   * This is a doc comment for `title`.
+   * @example This is a caption.
+   * ```ts
+   * var world: String = 'world';
+   * var hello: String = 'Hello ' + world;
+   * console.log(hello);
+   * ```
+   * @deprecated This is an example of the `deprecated` annotation tag.
+   */
+  public title = 'Tour of Heroes';
+}
 
-			<todo-input></todo-input>
-			<todo-list></todo-list>
-		</div>
-	`
-})
-export class App {
-	/**
-	 * This is a doc comment for `bar`.
-	 * @example This is a caption.
-	 * ```ts
-	 * var world: String = 'world';
-	 * var hello: String = 'Hello ' + world;
-	 * console.log(hello);
-	 * ```
-	 * @deprecated This is an example of the `deprecated` annotation tag.
-	 */
-	private bar: String = 'Todo';
-
-	constructor() {
-		this.print(this.bar);
-	}
-
-	/**
-	 * @param value Some value to be printed.
-	 */
-	print(value: String) {
-	  console.log('print()', value);
-	}
-};
-
-bootstrap(App, [TodoService]);
+bootstrap(AppComponent, [
+  ROUTER_PROVIDERS,
+  HeroService
+]);
