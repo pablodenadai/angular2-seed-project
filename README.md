@@ -10,23 +10,22 @@ Angular 2 is still in alpha and it shouldn't be used in production.
 ```
 
 ## Stack
-- Angular 2
-- TypeScript
-- Sass
-- Gulp 4
-- Unit Testing: Karma -> Jasmine
-- E2E Testing: Protractor
+- [Angular 2](https://angular.io/)
+- [TypeScript](http://www.typescriptlang.org/)
+- [Sass](http://sass-lang.com/)
+- [Gulp 4](http://gulpjs.com/)
+- [Karma](http://karma-runner.github.io/)
+- [Protractor](http://www.protractortest.org/)
 
 ## Features
-- Fully automated development workflow using **Gulp**.
-- **Modular** project structure.
+- **Gulp** fully automated workflow.
+- **Development** and **production** environment targets.
+- **Official** Angular 2 tutorial app implementation.
 - **Unit** and **E2E** test samples.
 - **Code coverage** report with TypeScript mapping.
-- **TypeScript** support - Linting, sourcemaps and transpilation to JS ES5.
-- **Sass** support - Linting, sourcemaps and transpilation to CSS.
+- **TypeScript** linting, sourcemaps and transpilation (ES5).
+- **Sass** linting, sourcemaps and transpilation.
 - ~~**TypeDoc** documentation generator.~~ (Currently disabled. See issue [#26](https://github.com/ghpabs/angular2-seed/issues/26).)
-- **Development** and **production** environment targets.
-
 
 ## Install
 ```
