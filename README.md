@@ -3,11 +3,9 @@
 [![Build Status](https://travis-ci.org/ghpabs/angular2-seed.svg)](https://travis-ci.org/ghpabs/angular2-seed)
 [![Join the chat at https://gitter.im/ghpabs/angular2-seed](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ghpabs/angular2-seed?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-> Light-weight and easy to use seed project for Angular 2 apps.
+Light-weight and easy to use seed project for Angular 2 apps.
 
-```
-Angular 2 is still in alpha and it shouldn't be used in production.
-```
+<img src="http://i.imgur.com/PdjeNVL.png" width="150">
 
 ## Stack
 - [Angular 2](https://angular.io/)
