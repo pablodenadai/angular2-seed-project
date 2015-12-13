@@ -60,3 +60,6 @@ You might have noticed that we have quite a few files in our `root` folder. You 
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. When submitting a PR, make sure that the commit messages match the [Angular conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit-message-format).
+
+## License
+MIT
