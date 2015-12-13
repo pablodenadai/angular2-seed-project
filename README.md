@@ -6,7 +6,7 @@
 Light-weight and easy to use seed project for Angular 2 apps.
 
 <p align="center">
-  <img src="http://i.imgur.com/PdjeNVL.png" width="180">
+  <img src="http://i.imgur.com/gM0tsOZ.png" width="250">
 </p>
 
 ## Stack
