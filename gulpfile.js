@@ -33,7 +33,8 @@ gulp.task('build', gulp.series(
 	clean,
 	gulp.parallel(scsslint, tslint),
 	gulp.parallel(scss, ts),
-	lib,
+	assets,
+	libs,
 	index
 	// typedoc
 ));
@@ -107,7 +108,12 @@ function ts() {
 		.pipe(plugins.connect.reload());
 }
 
-function lib() {
+function assets() {
+	return gulp.src('src/images/**/*')
+		.pipe(gulp.dest('build/images'));
+}
+
+function libs() {
 	return gulp.src(paths.libs.js)
 		.pipe(plugins.if(argv.prod, plugins.concat('libs.js')))
 		.pipe(plugins.if(argv.prod, plugins.uglify()))
