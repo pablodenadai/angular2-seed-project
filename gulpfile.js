@@ -33,7 +33,8 @@ gulp.task('build', gulp.series(
 	clean,
 	gulp.parallel(scsslint, tslint),
 	gulp.parallel(scss, ts),
-	lib,
+	assets,
+	libs,
 	index
 	// typedoc
 ));
@@ -72,7 +73,7 @@ function scss() {
 }
 
 function typedoc() {
-	return gulp.src('src/app/**/*.ts')
+	return gulp.src('src/scripts/**/*.ts')
 		.pipe(plugins.typedoc({
 			module: 'commonjs',
 			target: 'es5',
@@ -82,7 +83,7 @@ function typedoc() {
 }
 
 function tslint() {
-	return gulp.src('src/app/**/*.ts')
+	return gulp.src('src/scripts/**/*.ts')
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'));
 };
@@ -93,21 +94,26 @@ var tsProject = plugins.typescript.createProject('tsconfig.json', {
 });
 
 function ts() {
-	var tsResult = gulp.src('src/app/**/*.ts')
+	var tsResult = gulp.src('src/scripts/**/*.ts')
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.init()))
 		.pipe(plugins.typescript(tsProject));
 
 	return tsResult.js
 		.pipe(plugins.if(argv.prod, plugins.uglify()))
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.write('./', {
-			sourceRoot: __dirname + '/src/app'
+			sourceRoot: __dirname + '/src/scripts'
 		})))
 		.pipe(plugins.size({ title: 'ts' }))
 		.pipe(gulp.dest('build/js'))
 		.pipe(plugins.connect.reload());
 }
 
-function lib() {
+function assets() {
+	return gulp.src('src/images/**/*')
+		.pipe(gulp.dest('build/images'));
+}
+
+function libs() {
 	return gulp.src(paths.libs.js)
 		.pipe(plugins.if(argv.prod, plugins.concat('libs.js')))
 		.pipe(plugins.if(argv.prod, plugins.uglify()))
@@ -160,8 +166,8 @@ function protractor() {
 }
 
 function watch() {
-	gulp.watch('src/app/**/*.ts', gulp.series(tslint, ts, 'unit'));
-	gulp.watch('src/**/*.scss', gulp.series(scsslint, scss));
+	gulp.watch('src/scripts/**/*.ts', gulp.series(tslint, ts, 'unit'));
+	gulp.watch('src/scss/**/*.scss', gulp.series(scsslint, scss));
 	gulp.watch('src/index.html', index);
 	gulp.watch('test/unit/**/*.spec.js', gulp.series('unit'));
 }

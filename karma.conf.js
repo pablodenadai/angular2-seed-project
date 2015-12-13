@@ -27,7 +27,7 @@ module.exports = function(karma) {
 			{ pattern: 'test/unit/**/*.spec.js', included: false, watched: false },
 
 			/** Paths to support debugging with source maps in dev tools */
-			{ pattern: 'src/app/**/*.ts', included: false, watched: false }
+			{ pattern: 'src/scripts/**/*.ts', included: false, watched: false }
 		],
 
 		exclude: [

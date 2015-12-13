@@ -1,10 +1,8 @@
-// Import individual Bootstrap's modules as we need them.
-//
-// Note that the variables file was brought into the project to facilitate
+// Note that we could override the `variables` file to facilitate
 // customising the framework.
 
 // Core variables and mixins
-@import 'bootstrap-variables';
+@import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
 
 // Reset and dependencies
@@ -24,7 +22,7 @@
 // Components
 // @import 'node_modules/bootstrap/scss/animation';
 // @import 'node_modules/bootstrap/scss/dropdown';
-// @import 'node_modules/bootstrap/scss/button-group';
+@import 'node_modules/bootstrap/scss/button-group';
 // @import 'node_modules/bootstrap/scss/input-group';
 // @import 'node_modules/bootstrap/scss/custom-forms';
 // @import 'node_modules/bootstrap/scss/nav';

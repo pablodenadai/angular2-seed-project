@@ -5,7 +5,8 @@ module.exports = {
 			'build/lib/system.js',
 			'build/lib/angular2.dev.js',
 			'build/lib/router.dev.js',
-			'build/css/main.css'
+			
+			'build/css/app.css'
 		],
 
 		// Files to be processed by Gulp.

@@ -10,7 +10,7 @@ import {HeroService} from '../hero/hero.service';
     <h2>Top Heroes</h2>
 
     <div class="list-group">
-      <a *ngFor="#hero of heroes | slice:0:4"
+      <a *ngFor="#hero of heroes | slice:0:3"
         class="list-group-item"
         [class.active]="hero === selectedHero"
         (click)="onSelect(hero)">
