@@ -24,7 +24,7 @@ module.exports = function(karma) {
 			{ pattern: 'build/js/**/*.js', included: false, watched: true },
 
 			/** Paths to unit tests */
-			{ pattern: 'test/unit/**/*.spec.js', included: false, watched: false },
+			{ pattern: 'test/unit/**/*.spec.js', included: false, watched: true },
 
 			/** Paths to support debugging with source maps in dev tools */
 			{ pattern: 'src/scripts/**/*.ts', included: false, watched: false }
@@ -66,10 +66,7 @@ module.exports = function(karma) {
 		 * If we even update this to be `PhantomJS2` make sure we remove the `Firefox`
 		 * setup from `before_script` in the `.travis.yml` file.
 		 */
-		browsers: ['Chrome'],
-
-		autoWatch: false,
-		singleRun: true
+		browsers: ['Chrome']
 	};
 
 	if (process.env.TRAVIS) {
