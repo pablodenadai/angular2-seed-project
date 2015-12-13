@@ -5,13 +5,15 @@
 
 Light-weight and easy to use seed project for Angular 2 apps.
 
-<img src="http://i.imgur.com/PdjeNVL.png" width="150">
+<p align="center">
+  <img src="http://i.imgur.com/PdjeNVL.png" width="180">
+</p>
 
 ## Stack
+- [Gulp 4](http://gulpjs.com/)
 - [Angular 2](https://angular.io/)
 - [TypeScript](http://www.typescriptlang.org/)
 - [Sass](http://sass-lang.com/)
-- [Gulp 4](http://gulpjs.com/)
 - [Karma](http://karma-runner.github.io/)
 - [Protractor](http://www.protractortest.org/)
 
