@@ -110,6 +110,7 @@ function ts() {
 
 function assets() {
 	return gulp.src('src/images/**/*')
+		.pipe(plugins.size({ title: 'images' }))
 		.pipe(gulp.dest('build/images'));
 }
 
@@ -117,7 +118,7 @@ function libs() {
 	return gulp.src(paths.libs.js)
 		.pipe(plugins.if(argv.prod, plugins.concat('libs.js')))
 		.pipe(plugins.if(argv.prod, plugins.uglify()))
-		.pipe(plugins.size({ title: 'lib' }))
+		.pipe(plugins.size({ title: 'libs' }))
 		.pipe(gulp.dest('build/lib'));
 }
 
