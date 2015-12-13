@@ -10,11 +10,17 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 @Component({
   selector: 'my-app',
   template: `
-    <div class="jumbotron">
+    <div class="container">
       <h1 class="display-4">{{ title }}</h1>
       <p class="lead">Light-weight and easy to use seed project for Angular 2 apps.</p>
-      <a class="btn btn-primary-outline" [routerLink]="['Dashboard']">Dashboard</a>
-      <a class="btn btn-primary-outline" [routerLink]="['Heroes']">Heroes</a>
+      <img src="./images/super-fat-heroes.png" width="300px">
+
+      <hr>
+      <div class="btn-group">
+        <a class="btn btn-primary-outline" [routerLink]="['Dashboard']">Dashboard</a>
+        <a class="btn btn-primary-outline" [routerLink]="['Heroes']">Heroes</a>
+      </div>
+
       <hr>
       <router-outlet></router-outlet>
     </div>
