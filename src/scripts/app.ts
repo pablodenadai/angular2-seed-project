@@ -17,8 +17,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 
       <hr>
       <div class="btn-group">
-        <a class="btn btn-primary-outline" [routerLink]="['Dashboard']">Dashboard</a>
-        <a class="btn btn-primary-outline" [routerLink]="['Heroes']">Heroes</a>
+        <a class="btn btn-primary-outline" [routerLink]="['./Dashboard']">Dashboard</a>
+        <a class="btn btn-primary-outline" [routerLink]="['./Heroes']">Heroes</a>
       </div>
 
       <hr>
