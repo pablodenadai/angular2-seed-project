@@ -5,3 +5,17 @@ html {
     margin: 30px 0 90px;
   }
 }
+
+$color-white: #fff;
+
+a {
+  &.router-link-active {
+    background-color: $btn-primary-bg;
+    border-color: $btn-primary-bg;
+    color: $color-white;
+  } 
+  
+  &.list-group-item {
+    cursor: pointer;
+  }  
+}
