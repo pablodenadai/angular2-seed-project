@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 
-import {IHero} from './hero.interface';
+import {Hero} from './hero';
 import {HeroService} from './hero.service';
 
 @Component({
@@ -25,8 +25,8 @@ import {HeroService} from './hero.service';
 	`
 })
 export class HeroListComponent implements OnInit {
-	public heroes: IHero[] = [];
-	public selectedHero: IHero;
+	public heroes: Hero[] = [];
+	public selectedHero: Hero;
 
 	constructor(
 		private _heroService: HeroService,
@@ -38,12 +38,12 @@ export class HeroListComponent implements OnInit {
 
 		this._heroService
 			.getHeroes()
-			.then((heroes: IHero[]) => this.heroes = heroes);
+			.then((heroes: Hero[]) => this.heroes = heroes);
 
 		return this.heroes;
 	}
 
-	gotoDetail(hero: IHero) {
+	gotoDetail(hero: Hero) {
 		this._router.navigate(['HeroDetail', {
 			id: hero.id
 		}]);
@@ -53,7 +53,7 @@ export class HeroListComponent implements OnInit {
 		this.heroes = this.getHeroes();
 	}
 
-	onSelect(hero: IHero) {
+	onSelect(hero: Hero) {
 		this.selectedHero = hero;
 	}
 }

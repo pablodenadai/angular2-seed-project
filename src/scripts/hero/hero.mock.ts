@@ -1,6 +1,6 @@
-import { IHero } from './hero.interface';
+import { Hero } from './hero';
 
-export var HEROES: IHero[] = [
+export var HEROES: Hero[] = [
 	{ id: 1, name: 'Andromeda' },
 	{ id: 2, name: 'Black Widow' },
 	{ id: 3, name: 'Storm' },

@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 
-import {IHero} from './hero.interface';
+import {Hero} from './hero';
 import {HeroService} from './hero.service';
 
 @Component({
@@ -27,7 +27,7 @@ import {HeroService} from './hero.service';
 	inputs: ['hero']
 })
 export class HeroDetailComponent implements OnInit {
-	public hero: IHero;
+	public hero: Hero;
 
 	constructor(
 		private _heroService: HeroService,
@@ -40,7 +40,7 @@ export class HeroDetailComponent implements OnInit {
 
 			this._heroService
 				.getHero(id)
-				.then((hero: IHero) => this.hero = hero);
+				.then((hero: Hero) => this.hero = hero);
 		}
 	}
 

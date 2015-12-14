@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 
-import {IHero} from './hero.interface';
+import {Hero} from './hero';
 import {HEROES} from './hero.mock';
 
 @Injectable()
@@ -13,6 +13,6 @@ export class HeroService {
 	getHero(id: number) {
 		return Promise
 			.resolve(HEROES)
-			.then((heroes: IHero[]) => heroes.filter((h: IHero) => h.id === id)[0]);
+			.then((heroes: Hero[]) => heroes.filter((h: Hero) => h.id === id)[0]);
 	}
 }
