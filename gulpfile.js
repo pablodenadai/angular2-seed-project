@@ -26,7 +26,8 @@ gulp.task('unit', gulp.series(
 ));
 
 gulp.task('e2e', gulp.series(
-	protractor
+	protractorUpdate,
+	protractorRun
 ));
 
 gulp.task('build', gulp.series(
@@ -158,7 +159,12 @@ function remapcoverage() {
 	}));
 }
 
-function protractor() {
+var webdriver_update = require('gulp-protractor').webdriver_update;
+function protractorUpdate(cb) {
+	webdriver_update({}, cb);
+}
+
+function protractorRun() {
 	return gulp.src('test/e2e/**/*.e2e.js')
 		.pipe(plugins.protractor.protractor({
 			configFile: 'protractor.conf.js'
