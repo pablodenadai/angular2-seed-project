@@ -3,9 +3,9 @@ import { it, describe, expect, inject, beforeEachProviders } from 'angular2/test
 import { HeroService } from 'base/build/js/hero/hero.service';
 
 describe('user service', () => {
-  beforeEachProviders(() => [HeroService])
+	beforeEachProviders(() => [HeroService])
 
-  it('should have `getHero` method', inject([HeroService], (service) => {
-    expect(service.getHero).toBeDefined();
-  }));
+	it('should have `getHero` method', inject([HeroService], (service) => {
+		expect(service.getHero).toBeDefined();
+	}));
 });

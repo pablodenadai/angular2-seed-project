@@ -6,5 +6,5 @@
 'use strict';
 
 module.exports = function() {
-  this.header = element(by.tagName('h2'));
+	this.header = element(by.tagName('h2'));
 };

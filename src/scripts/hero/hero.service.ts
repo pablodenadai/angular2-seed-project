@@ -11,8 +11,8 @@ export class HeroService {
 	}
 
 	getHero(id: number) {
-    return Promise
+		return Promise
 			.resolve(HEROES)
-      .then((heroes: IHero[]) => heroes.filter((h: IHero) => h.id === id)[0]);
+			.then((heroes: IHero[]) => heroes.filter((h: IHero) => h.id === id)[0]);
 	}
 }
