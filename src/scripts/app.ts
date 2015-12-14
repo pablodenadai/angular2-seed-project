@@ -13,7 +13,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     <div class="container">
       <h1 class="display-4">{{ title }}</h1>
       <p class="lead">Light-weight and easy to use seed project for Angular 2 apps.</p>
-      <img src="./images/super-fat-heroes.png" width="300px">
+      <img src="./images/super-heroes.png" width="300px">
 
       <hr>
       <div class="btn-group">
