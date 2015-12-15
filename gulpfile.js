@@ -96,6 +96,9 @@ var tsProject = plugins.typescript.createProject('tsconfig.json', {
 
 function ts() {
 	var tsResult = gulp.src('src/scripts/**/*.ts')
+		.pipe(plugins.preprocess({
+			context: argv
+		}))
 		.pipe(plugins.if(argv.dev, plugins.sourcemaps.init()))
 		.pipe(plugins.typescript(tsProject));
 

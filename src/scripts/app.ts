@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, enableProdMode} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
@@ -50,6 +50,10 @@ export class AppComponent {
 	 */
 	public title = 'Tour of Heroes';
 }
+
+// @if prod
+enableProdMode();
+// @endif
 
 bootstrap(AppComponent, [
 	ROUTER_PROVIDERS,
