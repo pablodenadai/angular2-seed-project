@@ -16,8 +16,11 @@ module.exports = function(karma) {
 			{ pattern: 'node_modules/traceur/bin/traceur.js', included: true, watched: true },
 			{ pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: true, watched: true },
 			{ pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: true },
+			{ pattern: 'node_modules/rxjs/bundles/Rx.js', included: true, watched: true },
+			{ pattern: 'node_modules/angular2/bundles/angular2-polyfills.js', included: true, watched: true },
 			{ pattern: 'node_modules/angular2/bundles/angular2.dev.js', included: true, watched: true },
-			{ pattern: 'node_modules/angular2/bundles/testing.js', included: true, watched: true },
+			{ pattern: 'node_modules/angular2/bundles/router.dev.js', included: true, watched: true },
+			{ pattern: 'node_modules/angular2/bundles/testing.dev.js', included: true, watched: true },
 			{ pattern: 'karma.shim.js', included: true, watched: true },
 
 			/** Paths loaded via module imports */
