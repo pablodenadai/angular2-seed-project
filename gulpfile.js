@@ -145,9 +145,7 @@ function index() {
 var karma = require('karma');
 function karma(done) {
 	return new karma.Server({
-		configFile: __dirname + '/karma.conf.js',
-		singleRun: true,
-		autoWatch: false
+		configFile: __dirname + '/karma.conf.js'
 	}, done).start();
 }
 

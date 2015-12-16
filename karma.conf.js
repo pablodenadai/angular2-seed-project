@@ -8,33 +8,28 @@
 module.exports = function(karma) {
 	var config = {
 		basePath: '',
-
 		frameworks: ['jasmine'],
 
 		files: [
 			/** Paths loaded by Karma */
-			{ pattern: 'node_modules/traceur/bin/traceur.js', included: true, watched: true },
-			{ pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: true, watched: true },
-			{ pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: true },
-			{ pattern: 'node_modules/rxjs/bundles/Rx.js', included: true, watched: true },
-			{ pattern: 'node_modules/angular2/bundles/angular2-polyfills.js', included: true, watched: true },
-			{ pattern: 'node_modules/angular2/bundles/angular2.dev.js', included: true, watched: true },
-			{ pattern: 'node_modules/angular2/bundles/router.dev.js', included: true, watched: true },
-			{ pattern: 'node_modules/angular2/bundles/testing.dev.js', included: true, watched: true },
-			{ pattern: 'karma.shim.js', included: true, watched: true },
+			{ pattern: 'node_modules/traceur/bin/traceur.js', included: true },
+			{ pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: true },
+			{ pattern: 'node_modules/systemjs/dist/system.src.js', included: true },
+			{ pattern: 'node_modules/rxjs/bundles/Rx.js', included: true },
+			{ pattern: 'node_modules/angular2/bundles/angular2-polyfills.js', included: true },
+			{ pattern: 'node_modules/angular2/bundles/angular2.dev.js', included: true },
+			{ pattern: 'node_modules/angular2/bundles/router.dev.js', included: true },
+			{ pattern: 'node_modules/angular2/bundles/testing.dev.js', included: true },
+			{ pattern: 'karma.shim.js', included: true },
 
 			/** Paths loaded via module imports */
-			{ pattern: 'build/js/**/*.js', included: false, watched: true },
+			{ pattern: 'build/js/**/*.js', included: false },
 
 			/** Paths to unit tests */
-			{ pattern: 'test/unit/**/*.spec.js', included: false, watched: true },
+			{ pattern: 'test/unit/**/*.spec.js', included: false },
 
 			/** Paths to support debugging with source maps in dev tools */
-			{ pattern: 'src/scripts/**/*.ts', included: false, watched: false }
-		],
-
-		exclude: [
-			'node_modules/angular2/**/*_spec.js'
+			{ pattern: 'src/scripts/**/*.ts', included: false }
 		],
 
 		reporters: ['progress', 'coverage'],
@@ -55,6 +50,7 @@ module.exports = function(karma) {
 			file: 'coverage-js.json'
 		},
 
+		singleRun: true,
 		port: 9876,
 		colors: true,
 		logLevel: karma.LOG_INFO,
@@ -69,7 +65,7 @@ module.exports = function(karma) {
 		 * If we even update this to be `PhantomJS2` make sure we remove the `Firefox`
 		 * setup from `before_script` in the `.travis.yml` file.
 		 */
-		browsers: ['Chrome']
+		browsers: ['PhantomJS2']
 	};
 
 	if (process.env.TRAVIS) {
