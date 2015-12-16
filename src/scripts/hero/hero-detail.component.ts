@@ -30,18 +30,20 @@ export class HeroDetailComponent implements OnInit {
 	public hero: Hero;
 
 	constructor(
-		private _heroService: HeroService,
-		private _routeParams: RouteParams) {
+		private heroService: HeroService,
+		private routeParams: RouteParams) {
 	}
 
 	ngOnInit() {
-		if (!this.hero) {
-			let id = +this._routeParams.get('id');
+		let id: number = +this.routeParams.get('id');
 
-			this._heroService
-				.getHero(id)
-				.then((hero: Hero) => this.hero = hero);
-		}
+		this.getHero(id);
+	}
+
+	getHero(id: number) {
+		this.heroService
+			.getHero(id)
+			.then((hero: Hero) => this.hero = hero);
 	}
 
 	goBack() {

@@ -29,28 +29,26 @@ export class HeroListComponent implements OnInit {
 	public selectedHero: Hero;
 
 	constructor(
-		private _heroService: HeroService,
-		private _router: Router) {}
+		private heroService: HeroService,
+		private router: Router) {}
 
 	getHeroes() {
 		this.selectedHero = undefined;
 		this.heroes = [];
 
-		this._heroService
+		this.heroService
 			.getHeroes()
 			.then((heroes: Hero[]) => this.heroes = heroes);
-
-		return this.heroes;
 	}
 
 	gotoDetail(hero: Hero) {
-		this._router.navigate(['HeroDetail', {
+		this.router.navigate(['HeroDetail', {
 			id: hero.id
 		}]);
 	}
 
 	ngOnInit() {
-		this.heroes = this.getHeroes();
+		this.getHeroes();
 	}
 
 	onSelect(hero: Hero) {

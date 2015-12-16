@@ -35,7 +35,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 @RouteConfig([
 	{ path: '/dashboard', name: 'Dashboard', component: DashboardComponent, useAsDefault: true },
 	{ path: '/heroes', name: 'Heroes', component: HeroListComponent },
-	{ path: '/detail/:id', name: 'HeroDetail', component: HeroDetailComponent }
+	{ path: '/heroes/:id', name: 'HeroDetail', component: HeroDetailComponent }
 ])
 export class AppComponent {
 	/**
