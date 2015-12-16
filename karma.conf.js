@@ -65,7 +65,7 @@ module.exports = function(karma) {
 		 * If we even update this to be `PhantomJS2` make sure we remove the `Firefox`
 		 * setup from `before_script` in the `.travis.yml` file.
 		 */
-		browsers: ['PhantomJS2']
+		browsers: ['Chrome']
 	};
 
 	if (process.env.TRAVIS) {
