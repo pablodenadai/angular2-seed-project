@@ -23,13 +23,10 @@ module.exports = function(karma) {
 			{ pattern: 'karma.shim.js', included: true },
 
 			/** Paths loaded via module imports */
-			{ pattern: 'build/js/**/*.js', included: false },
+			{ pattern: '.karma/src/scripts/**/*.js', included: false },
 
 			/** Paths to unit tests */
-			{ pattern: 'test/unit/**/*.spec.js', included: false },
-
-			/** Paths to support debugging with source maps in dev tools */
-			{ pattern: 'src/scripts/**/*.ts', included: false }
+			{ pattern: '.karma/test/unit/**/*.spec.js', included: false }
 		],
 
 		reporters: ['progress', 'coverage'],
@@ -40,7 +37,7 @@ module.exports = function(karma) {
 			 * Do not include tests or libraries.
 			 * These files will be instrumented by Istanbul.
 			 */
-			'build/js/**/*.js': ['coverage']
+			'.karma/src/scripts/**/*.js': ['coverage']
 		 },
 
 		/** Optionally, configure the reporter */

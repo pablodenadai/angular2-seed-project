@@ -7,6 +7,13 @@
 var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')();
 
+var del = require('del'),
+	path = require('path'),
+	karma = require('karma'),
+	history = require('connect-history-api-fallback'),
+	webdriver = require('gulp-protractor').webdriver_update,
+	remapIstanbul = require('remap-istanbul/lib/gulpRemapIstanbul');
+
 var argv = require('yargs').argv;
 argv.prod = argv.prod || false;
 argv.dev = !argv.prod;
@@ -20,19 +27,9 @@ paths = argv.dev ? paths.dev : paths.prod;
 
 gulp.task(clean);
 
-gulp.task('unit', gulp.series(
-	karma,
-	remapcoverage
-));
-
-gulp.task('e2e', gulp.series(
-	webdriver,
-	protractor
-));
-
 gulp.task('build', gulp.series(
 	clean,
-	gulp.parallel(scsslint, tslint),
+	gulp.parallel(scssLint, tsLint),
 	gulp.parallel(scss, ts),
 	assets,
 	libs,
@@ -44,16 +41,29 @@ gulp.task('serve', gulp.series(
 	gulp.parallel(watch, livereload)
 ));
 
+gulp.task('unit', gulp.series(
+	karmaClean,
+	karmaTsSrc,
+	karmaTsSpec,
+	karmaRun,
+	karmaCoverage,
+	karmaClean
+));
+
+gulp.task('e2e', gulp.series(
+	protractorUpdate,
+	protractorRun
+));
+
 /**
  * Definitions
  */
 
-var del = require('del');
 function clean() {
-	return del(['docs', 'coverage', 'build']);
+	return del(['docs', 'coverage', 'build', '.karma']);
 }
 
-function scsslint() {
+function scssLint() {
 	return gulp.src('src/**/*.scss')
 		.pipe(plugins.sassLint({
 			config: '.sass-lint.yml'
@@ -83,7 +93,7 @@ function typedoc() {
 		}));
 }
 
-function tslint() {
+function tsLint() {
 	return gulp.src('src/scripts/**/*.ts')
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'));
@@ -93,7 +103,6 @@ var tsProject = plugins.typescript.createProject('tsconfig.json', {
 	typescript: require('typescript'),
 	outFile: argv.prod ? 'app.js' : undefined
 });
-
 function ts() {
 	var tsResult = gulp.src('src/scripts/**/*.ts')
 		.pipe(plugins.preprocess({
@@ -127,9 +136,7 @@ function libs() {
 }
 
 function index() {
-	var source = gulp.src(paths.includes, {
-		read: false
-	});
+	var source = gulp.src(paths.includes, { read: false });
 
 	return gulp.src('src/index.html')
 		.pipe(plugins.inject(source, {
@@ -142,15 +149,47 @@ function index() {
 		.pipe(plugins.connect.reload());
 }
 
-var karma = require('karma');
-function karma(done) {
+function karmaClean() {
+	return del(['.karma']);
+}
+
+function karmaTs(root) {
+	var karmaTsProject = plugins.typescript.createProject('tsconfig.json', {
+		typescript: require('typescript')
+	});
+
+	var caller = arguments.callee.caller.name;
+
+	var tsResult = gulp.src(path.join(root, '/**/*.ts'))
+		.pipe(plugins.preprocess({
+			context: argv
+		}))
+		.pipe(plugins.sourcemaps.init())
+		.pipe(plugins.typescript(karmaTsProject));
+
+	return tsResult.js
+		.pipe(plugins.sourcemaps.write('./', {
+			sourceRoot: path.join(__dirname, root)
+		}))
+		.pipe(plugins.size({ title: caller }))
+		.pipe(gulp.dest(path.join('.karma', root)));
+}
+
+function karmaTsSrc() {
+	return karmaTs('src/scripts');
+}
+
+function karmaTsSpec() {
+	return karmaTs('test/unit');
+}
+
+function karmaRun(done) {
 	return new karma.Server({
 		configFile: __dirname + '/karma.conf.js'
 	}, done).start();
 }
 
-var remapIstanbul = require('remap-istanbul/lib/gulpRemapIstanbul');
-function remapcoverage() {
+function karmaCoverage() {
 	return gulp.src('coverage/json/coverage-js.json')
 		.pipe(remapIstanbul({
 			reports: {
@@ -160,12 +199,11 @@ function remapcoverage() {
 	}));
 }
 
-var webdriver_update = require('gulp-protractor').webdriver_update;
-function webdriver(cb) {
-	webdriver_update({}, cb);
+function protractorUpdate(done) {
+	webdriver({}, done);
 }
 
-function protractor() {
+function protractorRun() {
 	return gulp.src('test/e2e/**/*.e2e.js')
 		.pipe(plugins.protractor.protractor({
 			configFile: 'protractor.conf.js'
@@ -174,13 +212,12 @@ function protractor() {
 }
 
 function watch() {
-	gulp.watch('src/scripts/**/*.ts', gulp.series(tslint, ts, 'unit'));
-	gulp.watch('src/scss/**/*.scss', gulp.series(scsslint, scss));
+	gulp.watch('src/scripts/**/*.ts', gulp.series(tsLint, ts, 'unit'));
+	gulp.watch('src/scss/**/*.scss', gulp.series(scssLint, scss));
 	gulp.watch('src/index.html', index);
-	gulp.watch('test/unit/**/*.spec.js', gulp.series('unit'));
+	gulp.watch('test/unit/**/*.spec.ts', gulp.series('unit'));
 }
 
-var history = require('connect-history-api-fallback');
 function livereload() {
 	return plugins.connect.server({
 		root: 'build',

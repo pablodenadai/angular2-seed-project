@@ -3,6 +3,7 @@
 /docs
 /build
 /coverage
+/.karma
 
 # Files
 npm-debug.log
