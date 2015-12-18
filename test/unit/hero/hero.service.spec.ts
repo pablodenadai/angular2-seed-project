@@ -6,7 +6,7 @@ import {HEROES} from '../../../src/scripts/hero/hero.mock';
 describe('hero service', () => {
 	beforeEachProviders(() => [HeroService]);
 
-	describe('getHeroes()', function() {
+	describe('getHeroes()', () => {
 		it('should be defined', inject([HeroService], (service: HeroService) => {
 			expect(service.getHeroes).toBeDefined();
 		}));
@@ -20,7 +20,7 @@ describe('hero service', () => {
 		}));
 	});
 
-	describe('getHero()', function() {
+	describe('getHero()', () => {
 		it('should be defined', inject([HeroService], (service: HeroService) => {
 			expect(service.getHero).toBeDefined();
 		}));

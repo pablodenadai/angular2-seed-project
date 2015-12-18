@@ -3,19 +3,19 @@
 
 import {App} from './app.page';
 
-describe('App', function() {
+describe('App', () => {
 	var page: App = new App();
 
-	beforeEach(function() {
+	beforeEach(() => {
 		browser.get('/');
 	});
 
-	it('should match page title', function(){
+	it('should match page title', () => {
 		var title = browser.getTitle();
 		expect(title).toEqual('Angular2 Seed');
-	})
+	});
 
-	it('should have an app header', function() {
+	it('should have an app header', () => {
 		var header = page.header.getText();
 		expect(header).toEqual('Tour of Heroes');
 	});
