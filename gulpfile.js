@@ -63,7 +63,7 @@ gulp.task('e2e', gulp.series(
  */
 
 function clean() {
-	return del(['docs', 'coverage', 'build', '.karma']);
+	return del(['docs', 'coverage', 'build', '.karma', '.protractor']);
 }
 
 function scssLint() {
