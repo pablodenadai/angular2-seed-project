@@ -1,7 +1,7 @@
-var HeroListPage = require('./hero-list.page.js');
+import {HeroList} from './hero-list.page';
 
 describe('HeroList', function() {
-	var page = new HeroListPage();
+	var page: HeroList = new HeroList();
 
 	beforeEach(function() {
 		browser.get('/heroes');

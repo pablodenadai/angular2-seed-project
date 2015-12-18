@@ -1,7 +1,7 @@
-var DashboardPage = require('./dashboard.page.js');
+import {Dashboard} from './dashboard.page';
 
 describe('Dashboard', function() {
-	var page = new DashboardPage();
+	var page: Dashboard = new Dashboard();
 
 	beforeEach(function() {
 		browser.get('/dashboard');

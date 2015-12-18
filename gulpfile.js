@@ -51,8 +51,11 @@ gulp.task('unit', gulp.series(
 ));
 
 gulp.task('e2e', gulp.series(
+	protractorClean,
+	protractorTsSpec,
 	protractorUpdate,
-	protractorRun
+	protractorRun,
+	protractorClean
 ));
 
 /**
@@ -199,12 +202,30 @@ function karmaCoverage() {
 	}));
 }
 
+function protractorClean() {
+	return del(['.protractor']);
+}
+
+var protractorTsProject = plugins.typescript.createProject('tsconfig.json', {
+	typescript: require('typescript'),
+	module: 'commonjs'
+});
+
+function protractorTsSpec() {
+	var tsResult = gulp.src('test/e2e/**/*.ts')
+		.pipe(plugins.typescript(protractorTsProject));
+
+	return tsResult.js
+		.pipe(plugins.size({ title: 'protractorTsSpec' }))
+		.pipe(gulp.dest('.protractor/test/e2e'));
+}
+
 function protractorUpdate(done) {
 	webdriver({}, done);
 }
 
 function protractorRun() {
-	return gulp.src('test/e2e/**/*.e2e.js')
+	return gulp.src('.protractor/test/e2e/**/*.e2e.js')
 		.pipe(plugins.protractor.protractor({
 			configFile: 'protractor.conf.js'
 		}))

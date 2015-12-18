@@ -1,7 +1,10 @@
-var AppPage = require('./app.page.js');
+/// <reference path="../../node_modules/angular2/typings/angular-protractor/angular-protractor" />
+/// <reference path="../../node_modules/angular2/typings/jasmine/jasmine" />
+
+import {App} from './app.page';
 
 describe('App', function() {
-	var page = new AppPage();
+	var page: App = new App();
 
 	beforeEach(function() {
 		browser.get('/');

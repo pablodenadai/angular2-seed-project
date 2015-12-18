@@ -5,6 +5,6 @@
 
 'use strict';
 
-module.exports = function() {
-	this.header = element(by.tagName('h2'));
-};
+export class App {
+	header = element(by.tagName('h1'));
+}
