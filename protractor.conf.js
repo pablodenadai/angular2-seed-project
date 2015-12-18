@@ -2,11 +2,6 @@ exports.config = {
 	framework: 'jasmine2',
 	baseUrl: 'http://localhost:8080/',
 
-	specs: [
-		'test/e2e/**/*.e2e.js'
-	],
-	exclude: [],
-
 	capabilities: {
 		'browserName': 'chrome',
 		'chromeOptions': {
