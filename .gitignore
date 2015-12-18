@@ -4,6 +4,7 @@
 /build
 /coverage
 /.karma
+/.protractor
 
 # Files
 npm-debug.log
