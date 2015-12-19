@@ -1,21 +1,6 @@
 language: node_js
-node_js:
-- '4'
-env:
-  global:
-  - GH_REF: github.com/ghpabs/angular2-seed.git
-  - secure: FD1qUl3b7oqS3ahT+5FteTnolv2QuthoPga9cZCI3DlDeAaT6BTeDR0bAien5/EyLHBr0GuHXgCOYVT2E/kb91H7NPfoZ4CT4RrnaPD6bc3QzPr/z9ZgGAHT9q5QGrDjA8rOnZOFA4BDiUOJYvMbQntTmCt6X++Gje4oDdrwsZ2HnlLNo8j8viaecTq2Z8R+DjJZ8OeZi9Yv0CrSh0RwksWm19JjWi8UCeYuqZ4zQG7hyWeCCwqjvnxNNwfks11ocF/XCXuqsusaR4nNaVi5CEdY/0Er1UPST7RavoNwOPom1t/Uza22HC1QmyZvHx1+7eYJ808haI+Nb5+4lDYELMgkvXOY6oN6KCOxLve1IOfXle+TSssjNmA3UvaoXAlqu4eZA8HwATem8a/6mDseQ5h3QDfR8W7NEWXbHQJuE1qLIPf1A1pVkX7V0zTyt1AD3BQ38r8e6sIWP8tyEZEyjELWX0CORYfxhqH5Gpq4YcEsehfl8A9zwNRjD/N+IBPFvGYkvdXbN4EexkX2ACjU5V9IsHgeso9tUdHXbJBftwjgunf/cEn9FmRIt2IbCrLklMmM4YK8xDZ0vXRgmBwNONJdWFlgYIeGW6LL4fXJezN2knD9fNeHo7zf4Nzd8NtR1a6EdsJ9+HPwLd49i4Opib77AyCEaYKNDBhhz60RgI4=
-before_install:
-- npm install gulpjs/gulp-cli#4.0 -g
-install:
-- npm install
-before_script:
-- gulp build
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-script:
-- gulp unit
-after_success: |
-  test $TRAVIS_PULL_REQUEST == "false" && \
-  test $TRAVIS_BRANCH == "master" && \
-  bash ./deploy.sh
+node_js: '4'
+before_install: npm install gulpjs/gulp-cli#4.0 -g
+install: npm install
+before_script: gulp build
+script: gulp unit
