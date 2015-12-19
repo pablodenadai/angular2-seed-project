@@ -6,8 +6,10 @@
 	},
 	"license": "MIT",
 	"version": "0.1.0",
-	"description": "Easy to use seed project for Angular 2 app development.",
-	"scripts": {},
+	"description": "Angular 2 Seed Project – TypeScript, Gulp, Karma, Protractor, Sass.",
+	"scripts": {
+		"start": "gulp build serve"
+	},
 	"author": "Pabs",
 	"dependencies": {
 		"angular2": "^2.0.0-beta.0",
