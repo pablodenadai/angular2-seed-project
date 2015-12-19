@@ -45,11 +45,15 @@ To view the app please open a new tab and go to `http://localhost:8080/`.
 - `$ gulp build`: Create distribution package. See environment `targets` below.
 - `$ gulp serve`: Start web-server and live-reload. See environment `targets` below.
 
-### Targets
-Use `--dev` and `--prod` modifiers for development and production targets where `--dev` is the default modifier.
+### Environments
+Default: `NODE_ENV=development` and `PORT=8080`.
 
-- `$ gulp build serve` is equivalent to `$ gulp build serve --dev`.
-- `$ gulp build serve --prod`.
+#### Development:
+- `$ gulp build serve` is equivalent to
+`$ NODE_ENV=development PORT=8080 gulp build serve`.
+
+#### Production
+- `$ NODE_ENV=production gulp build serve`.
 
 ## Ecosystem
 You might have noticed that we have quite a few files in our `root` folder. You might also be wondering why we need them and whether they are applicable to your use case. Here is a brief explanation:

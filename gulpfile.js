@@ -1,8 +1,15 @@
 /**
  * Usage:
- * `$ gulp [task] [env]`
- * @param env Options: --dev, --prod. Default: --dev.
+ * `$ NODE_ENV=<development/production> PORT=<port> gulp <task>`
  */
+
+process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
+process.env.PORT = process.env.PORT ? process.env.PORT : '8080';
+
+var env = {};
+env.prod = process.env.NODE_ENV === 'production',
+env.dev = !env.prod;
+env.port = process.env.PORT;
 
 var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')();
@@ -14,12 +21,8 @@ var del = require('del'),
 	webdriver = require('gulp-protractor').webdriver_update,
 	remapIstanbul = require('remap-istanbul/lib/gulpRemapIstanbul');
 
-var argv = require('yargs').argv;
-argv.prod = argv.prod || false;
-argv.dev = !argv.prod;
-
 var paths = require('./gulpfile.conf.js');
-paths = argv.dev ? paths.dev : paths.prod;
+paths = env.prod ? paths.prod : paths.dev;
 
 /**
  * Public Tasks
@@ -78,9 +81,9 @@ function scssLint() {
 function scss() {
 	return gulp.src('src/**/*.scss', { base: 'src/scss' })
 		.pipe(plugins.rename({dirname: ''}))
-		.pipe(plugins.if(argv.dev, plugins.sourcemaps.init()))
+		.pipe(plugins.if(env.dev, plugins.sourcemaps.init()))
 		.pipe(plugins.sass())
-		.pipe(plugins.if(argv.dev, plugins.sourcemaps.write()))
+		.pipe(plugins.if(env.dev, plugins.sourcemaps.write()))
 		.pipe(plugins.size({ title: 'sass' }))
 		.pipe(gulp.dest('build/css'))
 		.pipe(plugins.connect.reload());
@@ -104,19 +107,19 @@ function tsLint() {
 
 var tsProject = plugins.typescript.createProject('tsconfig.json', {
 	typescript: require('typescript'),
-	outFile: argv.prod ? 'app.js' : undefined
+	outFile: env.prod ? 'app.js' : undefined
 });
 function ts() {
 	var tsResult = gulp.src('src/scripts/**/*.ts')
 		.pipe(plugins.preprocess({
-			context: argv
+			context: env
 		}))
-		.pipe(plugins.if(argv.dev, plugins.sourcemaps.init()))
+		.pipe(plugins.if(env.dev, plugins.sourcemaps.init()))
 		.pipe(plugins.typescript(tsProject));
 
 	return tsResult.js
-		.pipe(plugins.if(argv.prod, plugins.uglify()))
-		.pipe(plugins.if(argv.dev, plugins.sourcemaps.write('./', {
+		.pipe(plugins.if(env.prod, plugins.uglify()))
+		.pipe(plugins.if(env.dev, plugins.sourcemaps.write('./', {
 			sourceRoot: __dirname + '/src/scripts'
 		})))
 		.pipe(plugins.size({ title: 'ts' }))
@@ -132,8 +135,8 @@ function assets() {
 
 function libs() {
 	return gulp.src(paths.libs.js)
-		.pipe(plugins.if(argv.prod, plugins.concat('libs.js')))
-		.pipe(plugins.if(argv.prod, plugins.uglify()))
+		.pipe(plugins.if(env.prod, plugins.concat('libs.js')))
+		.pipe(plugins.if(env.prod, plugins.uglify()))
 		.pipe(plugins.size({ title: 'libs' }))
 		.pipe(gulp.dest('build/lib'));
 }
@@ -146,7 +149,7 @@ function index() {
 			ignorePath: 'build'
 		}))
 		.pipe(plugins.preprocess({
-			context: argv
+			context: env
 		}))
 		.pipe(gulp.dest('build'))
 		.pipe(plugins.connect.reload());
@@ -165,7 +168,7 @@ function karmaTs(root) {
 
 	var tsResult = gulp.src(path.join(root, '/**/*.ts'))
 		.pipe(plugins.preprocess({
-			context: argv
+			context: env
 		}))
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.typescript(karmaTsProject));
@@ -242,7 +245,8 @@ function watch() {
 function livereload() {
 	return plugins.connect.server({
 		root: 'build',
-		livereload: true,
+		livereload: env.dev,
+		port: env.port,
 		middleware: function(connect, opt) {
 			return [history()];
 		}
