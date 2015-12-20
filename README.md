@@ -5,9 +5,7 @@
 
 Light-weight and easy to use seed project for Angular 2 apps.
 
-<p align="center">
-  <img src="http://i.imgur.com/gM0tsOZ.png" width="250">
-</p>
+<img src="http://i.imgur.com/9CS3aZm.png" width="100%">
 
 ## Stack
 - [Gulp 4](http://gulpjs.com/)
