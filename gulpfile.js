@@ -114,6 +114,9 @@ function ts() {
 		.pipe(plugins.preprocess({
 			context: env
 		}))
+		.pipe(plugins.inlineNg2Template({
+			base: 'src/scripts'
+		}))
 		.pipe(plugins.if(env.dev, plugins.sourcemaps.init()))
 		.pipe(plugins.typescript(tsProject));
 
@@ -169,6 +172,9 @@ function karmaTs(root) {
 	var tsResult = gulp.src(path.join(root, '/**/*.ts'))
 		.pipe(plugins.preprocess({
 			context: env
+		}))
+		.pipe(plugins.inlineNg2Template({
+			base: root
 		}))
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.typescript(karmaTsProject));
@@ -236,7 +242,11 @@ function protractorRun() {
 }
 
 function watch() {
-	gulp.watch('src/scripts/**/*.ts', gulp.series(tsLint, ts, 'unit'));
+	gulp.watch([
+		'src/scripts/**/*.ts',
+		'src/scripts/**/*.css',
+		'src/scripts/**/*.html'
+	], gulp.series(tsLint, ts, 'unit'));
 	gulp.watch('src/scss/**/*.scss', gulp.series(scssLint, scss));
 	gulp.watch('src/index.html', index);
 	gulp.watch('test/unit/**/*.spec.ts', gulp.series('unit'));

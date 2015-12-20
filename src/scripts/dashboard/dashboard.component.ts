@@ -6,23 +6,7 @@ import {HeroService} from '../hero/hero.service';
 
 @Component({
 	selector: 'my-dashboard',
-	template: `
-		<h2>Top Heroes</h2>
-
-		<div class="list-group">
-			<a *ngFor="#hero of heroes"
-				class="list-group-item"
-				[class.active]="hero === selectedHero"
-				(click)="onSelect(hero)">
-				{{ hero.name }}
-
-				<div *ngIf="hero === selectedHero">
-					<h2>{{ selectedHero.name | uppercase }} is a top hero!</h2>
-					<button class="btn btn-info-outline" (click)="gotoDetail(selectedHero)">View Details</button>
-				</div>
-			</a>
-		</div>
-	`
+	templateUrl: 'dashboard/dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
 	public heroes: Hero[] = [];
