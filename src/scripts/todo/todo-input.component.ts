@@ -5,14 +5,16 @@ import {Todo} from './todo';
 import {ITodo} from './todo.interface';
 import {TodoService} from './todo.service';
 
+import {LogElement} from '../shared/directives/log-element.directive';
+
 @Component({
 	selector: 'todo-input'
 })
 @View({
-	directives: [FORM_DIRECTIVES],
+	directives: [FORM_DIRECTIVES, LogElement],
 	template: `
 		<form (ngSubmit)="submit(todo)">
-			<input type="text" [(ngModel)]="todo.title">
+			<input type="text" [(ngModel)]="todo.title" logElement>
 		</form>
 	`
 })
