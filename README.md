@@ -23,7 +23,7 @@ Light-weight and easy to use seed project for Angular 2 apps.
 - **Code coverage** report with TypeScript mapping.
 - **TypeScript** linting, sourcemaps and transpilation (ES5).
 - **Sass** linting, sourcemaps and transpilation.
-- ~~**TypeDoc** documentation generator.~~ (Currently disabled. See issue [#26](https://github.com/ghpabs/angular2-seed/issues/26).)
+- **TypeDoc** documentation generator.
 
 ## Angular 2 Features
 - Directives

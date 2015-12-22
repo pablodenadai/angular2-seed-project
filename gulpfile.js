@@ -36,8 +36,8 @@ gulp.task('build', gulp.series(
 	gulp.parallel(scss, ts),
 	assets,
 	libs,
-	index
-	// typedoc
+	index,
+	typedoc
 ));
 
 gulp.task('serve', gulp.series(
