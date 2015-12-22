@@ -1,21 +1,28 @@
-import {Component, View, enableProdMode} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
-// import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
+import {Component, View, enableProdMode} from 'angular2/core';
+import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
+import {HomeComponent} from './home/home.component';
 import {TodoComponent} from './todo/todo.component';
 
 @Component({
 	selector: 'app'
 })
 @View({
-	directives: [TodoComponent],
+	directives: [ROUTER_DIRECTIVES],
 	template: `
 		<div>
 			<h1>{{ title }}</h1>
-			<todo></todo>
+			<a [routerLink]="['Home']">Home</a>
+			<a [routerLink]="['Todo']">Todo</a>
+			<router-outlet></router-outlet>
 		</div>
 	`
 })
+@RouteConfig([
+	{ path: '/home', name: 'Home', component: HomeComponent, useAsDefault: true },
+	{ path: '/todo', name: 'Todo', component: TodoComponent }
+])
 export class AppComponent {
 	/**
 	 * This is a doc comment for `title`.
@@ -34,4 +41,6 @@ export class AppComponent {
 enableProdMode();
 // @endif
 
-bootstrap(AppComponent, []);
+bootstrap(AppComponent, [
+	ROUTER_PROVIDERS
+]);

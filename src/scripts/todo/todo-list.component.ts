@@ -1,9 +1,9 @@
-import {Component, View} from 'angular2/core';
 import {NgFor} from 'angular2/common';
+import {Component, View} from 'angular2/core';
 
 import {ITodo} from './todo.interface';
-import {TodoItemComponent} from './todo-item.component';
 import {TodoService} from './todo.service';
+import {TodoItemComponent} from './todo-item.component';
 
 @Component({
 	selector: 'todo-list'
