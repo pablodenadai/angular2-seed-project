@@ -15,7 +15,7 @@ Light-weight and easy to use seed project for Angular 2 apps.
 - [Karma](http://karma-runner.github.io/)
 - [Protractor](http://www.protractortest.org/)
 
-## Features
+## Workflow Features
 - **Gulp** fully automated workflow.
 - **Development** and **production** environment targets.
 - **Official** Angular 2 tutorial app implementation.
@@ -24,6 +24,9 @@ Light-weight and easy to use seed project for Angular 2 apps.
 - **TypeScript** linting, sourcemaps and transpilation (ES5).
 - **Sass** linting, sourcemaps and transpilation.
 - ~~**TypeDoc** documentation generator.~~ (Currently disabled. See issue [#26](https://github.com/ghpabs/angular2-seed/issues/26).)
+
+## Angular 2 Features
+TODO
 
 ## Install
 ```

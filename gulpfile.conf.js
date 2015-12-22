@@ -7,6 +7,7 @@ module.exports = {
 			'build/lib/angular2-polyfills.js',
 			'build/lib/angular2.dev.js',
 			'build/lib/router.dev.js',
+			'build/lib/http.dev.js',
 
 			'build/css/app.css'
 		],
@@ -18,7 +19,8 @@ module.exports = {
 				'node_modules/rxjs/bundles/Rx.js',
 				'node_modules/angular2/bundles/angular2-polyfills.js',
 				'node_modules/angular2/bundles/angular2.dev.js',
-				'node_modules/angular2/bundles/router.dev.js'
+				'node_modules/angular2/bundles/router.dev.js',
+				'node_modules/angular2/bundles/http.dev.js'
 			]
 		}
 	},
@@ -37,7 +39,8 @@ module.exports = {
 				'node_modules/rxjs/bundles/Rx.min.js',
 				'node_modules/angular2/bundles/angular2-polyfills.min.js',
 				'node_modules/angular2/bundles/angular2.min.js',
-				'node_modules/angular2/bundles/router.min.js'
+				'node_modules/angular2/bundles/router.min.js',
+				'node_modules/angular2/bundles/http.min.js'
 			]
 		}
 	}

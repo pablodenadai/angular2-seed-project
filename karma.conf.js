@@ -19,6 +19,7 @@ module.exports = function(karma) {
 			{ pattern: 'node_modules/angular2/bundles/angular2-polyfills.js', included: true },
 			{ pattern: 'node_modules/angular2/bundles/angular2.dev.js', included: true },
 			{ pattern: 'node_modules/angular2/bundles/router.dev.js', included: true },
+			{ pattern: 'node_modules/angular2/bundles/http.dev.js', included: true },
 			{ pattern: 'node_modules/angular2/bundles/testing.dev.js', included: true },
 			{ pattern: 'karma.shim.js', included: true },
 
