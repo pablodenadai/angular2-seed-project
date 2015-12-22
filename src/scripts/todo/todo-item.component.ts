@@ -2,7 +2,7 @@ import {NgIf} from 'angular2/common';
 import {Component, View, Input, Output, EventEmitter} from 'angular2/core';
 
 import {ITodo} from './todo.interface';
-import {TruncatePipe} from '../shared/pipes/title-case.pipe';
+import {TruncatePipe} from '../shared/pipes/truncate.pipe';
 
 @Component({
 	selector: 'todo-item'
