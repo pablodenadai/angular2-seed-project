@@ -26,7 +26,15 @@ Light-weight and easy to use seed project for Angular 2 apps.
 - ~~**TypeDoc** documentation generator.~~ (Currently disabled. See issue [#26](https://github.com/ghpabs/angular2-seed/issues/26).)
 
 ## Angular 2 Features
-TODO
+- Directives
+- Pipes
+- Services
+- Router
+- HTTP CRUD
+- Template Cache
+- Dependency Injection
+- Modular Components
+- Custom Events: *@Input, @Output and EventEmitter*
 
 ## Install
 ```
