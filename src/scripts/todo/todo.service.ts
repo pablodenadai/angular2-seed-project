@@ -20,7 +20,7 @@ export class TodoService {
 			.subscribe((todos: ITodo[]) => this.todos = todos);
 	}
 
-	save(todo: ITodo): void {
+	create(todo: ITodo): void {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
@@ -28,15 +28,15 @@ export class TodoService {
 			.subscribe(() => this.todos.unshift(todo));
 	}
 
-	delete(todo: ITodo): void {
-		this.http.delete(`${this.url}/${todo.id}`)
-			.subscribe(() => this.todos.splice(this.todos.indexOf(todo), 1));
-	}
-
 	update(todo: ITodo): void {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
 		this.http.put(`${this.url}/${todo.id}`, JSON.stringify(todo), { headers: headers });
+	}
+
+	delete(todo: ITodo): void {
+		this.http.delete(`${this.url}/${todo.id}`)
+			.subscribe(() => this.todos.splice(this.todos.indexOf(todo), 1));
 	}
 }

@@ -26,7 +26,7 @@ export class TodoInputComponent {
 	) {}
 
 	submit(todo: ITodo): void {
-		this.todoService.save(todo);
+		this.todoService.create(todo);
 		this.todo = new Todo();
 	}
 }
