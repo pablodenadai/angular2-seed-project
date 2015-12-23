@@ -16,7 +16,7 @@ describe('Todo', () => {
 
   it('should generate random `id`', () => {
     todo = new Todo();
-    expect(todo.id).toBeGreaterThan(0);
+    expect(todo.id).toBeGreaterThan(-1);
   });
 
   it('should instantiate with `title` argument', () => {
