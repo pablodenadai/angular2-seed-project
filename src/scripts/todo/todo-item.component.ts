@@ -11,20 +11,23 @@ import {TruncatePipe} from '../shared/pipes/truncate.pipe';
 	directives: [NgIf],
 	pipes: [TruncatePipe],
 	template: `
-		<div class="row todo-item">
+		<div class="row todo-item" [ngClass]="{ completed: todo.completed }">
 			<div class="col-xs-1">
-				<input type="checkbox" [(ngModel)]="todo.completed" (click)="update(todo)">
+				<input type="checkbox" class="todo-item-select" [(ngModel)]="todo.completed" (click)="update(todo)">
 			</div>
+
 			<div class="col-xs-8">
-				<span *ngIf="!editing" (click)="toggle()">
+				<span class="todo-item-text" *ngIf="!editing" (click)="toggle()">
 					{{ todo.title | truncate:40:'...' }}
 				</span>
+
 				<form *ngIf="editing" (ngSubmit)="submit(todo)">
-					<input type="text" class="form-control" [(ngModel)]="todo.title">
+					<input type="text" class="todo-item-input" [(ngModel)]="todo.title">
 				</form>
 			</div>
+
 			<div class="col-xs-3">
-				<button class="btn btn-danger pull-xs-right" (click)="delete(todo)">Delete</button>
+				<button class="todo-item-delete" (click)="delete(todo)">Delete</button>
 			</div>
 		</div>
 	`

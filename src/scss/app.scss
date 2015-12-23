@@ -10,32 +10,43 @@ html {
   @extend .nav-link.active;
 }
 
+// --------------
+// Todo Component
+// --------------
+
+.todo-item-text {
+  display: block;
+  padding: .435rem .8rem;
+}
+
+.todo-item-input {
+  @extend .form-control;
+}
+
+.todo-item-select {
+  display: none;
+  margin: 13px 0 0;
+}
+
+.todo-item-delete {
+  @extend .btn;
+  @extend .btn-danger;
+  @extend .pull-xs-right;
+  display: none;
+}
+
 .todo-item {
-  span {
-    display: block;
-    padding: .435rem .8rem;
-  }
-
-  input {
-    &[type='checkbox'] {
-      display: none;
-      margin: 13px 0 0;
-    }
-  }
-
-  button {
-    display: none;
-  }
-
   &:hover {
-    input {
-      &[type='checkbox'] {
-        display: block;
-      }
-    }
-
-    button {
+    .todo-item-select,
+    .todo-item-delete {
       display: block;
+    }
+  }
+
+  &.completed {
+    .todo-item-text {
+      color: $gray-lighter;
+      text-decoration: line-through;
     }
   }
 }
