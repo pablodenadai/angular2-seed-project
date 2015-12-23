@@ -6,5 +6,5 @@
 'use strict';
 
 export class App {
-	header = element(by.tagName('h1'));
+	menu = element.all(by.tagName('ul')).all(by.tagName('a'));
 }
