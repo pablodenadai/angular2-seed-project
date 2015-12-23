@@ -18,7 +18,6 @@ Light-weight and easy to use seed project for Angular 2 apps.
 ## Workflow Features
 - **Gulp** fully automated workflow.
 - **Development** and **production** environment targets.
-- **Official** Angular 2 tutorial app implementation.
 - **Unit** and **E2E** test samples.
 - **Code coverage** report with TypeScript mapping.
 - **TypeScript** linting, sourcemaps and transpilation (ES5).
@@ -30,11 +29,11 @@ Light-weight and easy to use seed project for Angular 2 apps.
 - Pipes
 - Services
 - Router
-- HTTP CRUD
+- REST API
 - Template Cache
-- Dependency Injection
 - Modular Components
-- Custom Events: *@Input, @Output and EventEmitter*
+- Dependency Injection
+- Custom Events
 
 ## Install
 ```

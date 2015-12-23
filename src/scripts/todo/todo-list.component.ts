@@ -11,7 +11,7 @@ import {TodoItemComponent} from './todo-item.component';
 @View({
 	directives: [NgFor, TodoItemComponent],
 	template: `
-		<ul>
+		<ul class="list-unstyled">
 			<li *ngFor="#todo of todoService.todos">
 				<todo-item
 					[todo]="todo"

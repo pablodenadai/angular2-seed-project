@@ -2,8 +2,8 @@ import {bootstrap} from 'angular2/platform/browser';
 import {Component, View, enableProdMode} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
-import {HomeComponent} from './home/home.component';
 import {TodoComponent} from './todo/todo.component';
+import {AboutComponent} from './about/about.component';
 
 @Component({
 	selector: 'app'
@@ -12,16 +12,18 @@ import {TodoComponent} from './todo/todo.component';
 	directives: [ROUTER_DIRECTIVES],
 	template: `
 		<div>
-			<h1>{{ title }}</h1>
-			<a [routerLink]="['Home']">Home</a>
-			<a [routerLink]="['Todo']">Todo</a>
+			<ul class="nav nav-pills">
+				<li class="nav-item"><a class="nav-link" [routerLink]="['Todo']">Todo</a></li>
+				<li class="nav-item"><a class="nav-link" [routerLink]="['About']">About</a></li>
+			</ul>
+			<hr>
 			<router-outlet></router-outlet>
 		</div>
 	`
 })
 @RouteConfig([
-	{ path: '/home', name: 'Home', component: HomeComponent, useAsDefault: true },
-	{ path: '/todo', name: 'Todo', component: TodoComponent }
+	{ path: '/todo', name: 'Todo', component: TodoComponent },
+	{ path: '/about', name: 'About', component: AboutComponent, useAsDefault: true }
 ])
 export class AppComponent {
 	/**

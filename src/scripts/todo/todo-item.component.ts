@@ -11,11 +11,22 @@ import {TruncatePipe} from '../shared/pipes/truncate.pipe';
 	directives: [NgIf],
 	pipes: [TruncatePipe],
 	template: `
-		<span *ngIf="!editing" (click)="toggle()">{{ todo.title | truncate:50:'...' }}</span>
-		<form *ngIf="editing" (ngSubmit)="update(todo)">
-			<input type="text" [(ngModel)]="todo.title">
-		</form>
-		<button (click)="delete(todo)">Delete</button>
+		<div class="row todo-item">
+			<div class="col-xs-1">
+				<input type="checkbox" [(ngModel)]="todo.completed" (click)="update(todo)">
+			</div>
+			<div class="col-xs-8">
+				<span *ngIf="!editing" (click)="toggle()">
+					{{ todo.title | truncate:40:'...' }}
+				</span>
+				<form *ngIf="editing" (ngSubmit)="submit(todo)">
+					<input type="text" class="form-control" [(ngModel)]="todo.title">
+				</form>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-danger pull-xs-right" (click)="delete(todo)">Delete</button>
+			</div>
+		</div>
 	`
 })
 export class TodoItemComponent {
@@ -31,6 +42,10 @@ export class TodoItemComponent {
 
 	update(todo: ITodo): void {
 		this.updateEmitter.emit(todo);
+	}
+
+	submit(todo: ITodo): void {
+		this.update(todo);
 		this.toggle();
 	}
 

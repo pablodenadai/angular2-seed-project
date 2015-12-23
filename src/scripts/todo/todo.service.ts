@@ -7,12 +7,19 @@ import {ITodo} from './todo.interface';
 
 @Injectable()
 export class TodoService {
-	private url: string = 'http://jsonplaceholder.typicode.com/todos';
 	private todos: ITodo[] = [];
+
+	private url: string;
+	private headers: Headers;
 
 	constructor(
 		private http: Http
-	) {}
+	) {
+		this.url = 'http://jsonplaceholder.typicode.com/todos';
+
+		this.headers = new Headers();
+		this.headers.append('Content-Type', 'application/json');
+	}
 
 	fetch(): void {
 		this.http.get(this.url)
@@ -21,22 +28,21 @@ export class TodoService {
 	}
 
 	create(todo: ITodo): void {
-		let headers = new Headers();
-		headers.append('Content-Type', 'application/json');
+		this.todos.unshift(todo);
 
-		this.http.post(this.url, JSON.stringify(todo), { headers: headers })
-			.subscribe(() => this.todos.unshift(todo));
+		this.http.post(this.url, JSON.stringify(todo), { headers: this.headers })
+			.subscribe(() => console.log('created'));
 	}
 
 	update(todo: ITodo): void {
-		let headers = new Headers();
-		headers.append('Content-Type', 'application/json');
-
-		this.http.put(`${this.url}/${todo.id}`, JSON.stringify(todo), { headers: headers });
+		this.http.put(`${this.url}/${todo.id}`, JSON.stringify(todo), { headers: this.headers })
+			.subscribe(() => console.log('updated'));
 	}
 
 	delete(todo: ITodo): void {
+		this.todos.splice(this.todos.indexOf(todo), 1);
+
 		this.http.delete(`${this.url}/${todo.id}`)
-			.subscribe(() => this.todos.splice(this.todos.indexOf(todo), 1));
+			.subscribe(() => console.log('deleted'));
 	}
 }

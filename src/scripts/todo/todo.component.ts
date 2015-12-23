@@ -15,10 +15,12 @@ import {TodoInputComponent} from './todo-input.component';
 @View({
 	directives: [TodoInputComponent, TodoListComponent],
 	template: `
-		<div>
-			<h2>{{ header }}</h2>
-			<todo-input></todo-input>
-			<todo-list></todo-list>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<todo-input></todo-input>
+				<br>
+				<todo-list></todo-list>
+			</div>
 		</div>
 	`
 })

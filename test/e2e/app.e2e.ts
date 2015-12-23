@@ -12,7 +12,7 @@ describe('App', () => {
 
 	it('should match page title', () => {
 		var title = browser.getTitle();
-		expect(title).toEqual('Angular2 Seed');
+		expect(title).toEqual('Angular 2 Seed');
 	});
 
 	it('should have an app header', () => {

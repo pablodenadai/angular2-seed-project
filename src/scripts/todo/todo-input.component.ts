@@ -14,7 +14,12 @@ import {LogElement} from '../shared/directives/log-element.directive';
 	directives: [FORM_DIRECTIVES, LogElement],
 	template: `
 		<form (ngSubmit)="submit(todo)">
-			<input type="text" [(ngModel)]="todo.title" logElement>
+			<input
+				type="text"
+				class="form-control form-control-lg"
+				placeholder="new todo, press enter to save"
+				[(ngModel)]="todo.title"
+				logElement>
 		</form>
 	`
 })
@@ -26,6 +31,10 @@ export class TodoInputComponent {
 	) {}
 
 	submit(todo: ITodo): void {
+		if (!todo.title) {
+			return;
+		}
+
 		this.todoService.create(todo);
 		this.todo = new Todo();
 	}
