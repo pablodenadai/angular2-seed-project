@@ -17,8 +17,8 @@ import {TruncatePipe} from '../shared/pipes/truncate.pipe';
 			</div>
 
 			<div class="col-xs-8">
-				<span class="todo-item-text" *ngIf="!editing" (click)="toggle()">
-					{{ todo.title | truncate:40:'...' }}
+				<span class="todo-item-text" *ngIf="!editing" (click)="toggleEditState()">
+					{{ todo.title | truncate:30:'...' }}
 				</span>
 
 				<form *ngIf="editing" (ngSubmit)="submit(todo)">
@@ -49,10 +49,10 @@ export class TodoItemComponent {
 
 	submit(todo: ITodo): void {
 		this.update(todo);
-		this.toggle();
+		this.toggleEditState();
 	}
 
-	toggle(): void {
+	toggleEditState(): void {
 		this.editing = !this.editing;
 	}
 }

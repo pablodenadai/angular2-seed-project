@@ -5,10 +5,14 @@ import {TodoService} from './todo.service';
 import {TodoListComponent} from './todo-list.component';
 import {TodoInputComponent} from './todo-input.component';
 
+import {RestOptions, RestService} from '../shared/services/rest.service';
+
 @Component({
 	selector: 'todo',
 	providers: [
 		HTTP_PROVIDERS,
+		RestOptions,
+		RestService,
 		TodoService
 	]
 })
@@ -17,6 +21,11 @@ import {TodoInputComponent} from './todo-input.component';
 	template: `
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
+				<p>For this example we're using
+					<a href="http://jsonplaceholder.typicode.com/" target="_blank">
+						JSONPlaceholder - Fake Online REST API for Testing and Prototyping
+					</a>.
+				</p>
 				<todo-input></todo-input>
 				<br>
 				<todo-list></todo-list>
