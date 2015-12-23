@@ -37,7 +37,7 @@ Light-weight and easy to use seed project for Angular 2 apps.
 
 ## Install
 ```
-$ git clone https://github.com/ghpabs/angular2-seed.git && cd angular2-seed
+$ git clone https://github.com/ghpabs/angular2-seed-project.git && cd angular2-seed-project
 $ npm install
 $ gulp build serve
 ```
