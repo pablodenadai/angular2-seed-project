@@ -22,8 +22,8 @@ import {AboutComponent} from './about/about.component';
 	`
 })
 @RouteConfig([
-	{ path: '/todo', name: 'Todo', component: TodoComponent },
-	{ path: '/about', name: 'About', component: AboutComponent, useAsDefault: true }
+	{ path: '/todo', name: 'Todo', component: TodoComponent, useAsDefault: true },
+	{ path: '/about', name: 'About', component: AboutComponent }
 ])
 export class AppComponent {
 	/**
