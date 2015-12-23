@@ -8,7 +8,7 @@ import {ITodo} from './todo.interface';
 
 @Injectable()
 export class TodoService {
-	private todos: ITodo[] = [];
+	public todos: ITodo[] = [];
 
 	constructor(
 		private rest: RestService
