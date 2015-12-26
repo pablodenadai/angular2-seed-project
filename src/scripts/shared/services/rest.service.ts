@@ -8,7 +8,7 @@ import {Http, Request, Response, RequestMethod, RequestOptions, BaseRequestOptio
 export class RestOptions extends BaseRequestOptions {
 	constructor() {
 		super();
-		this.url = 'http://jsonplaceholder.typicode.com';
+		this.url = '//jsonplaceholder.typicode.com';
 		this.headers.append('Content-Type', 'application/json');
 	}
 }
