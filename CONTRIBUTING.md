@@ -1,6 +1,15 @@
 # Contributing to Angular 2 - Seed Project
 
-Thanks for contributing to the project! As a contributor, here are the guidelines we would like you to follow:
+# <a name="tldr"></a> TL;DR
+
+- Include Node/NPM version when reporting an issue.
+- Format your code/stack trace. See [GitHub Flavored Markdown][github-markdown].
+- Gulp task isn't working? Try `npm install`.
+- Can find NPM module? Try `npm install`.
+
+# Contributing
+
+As a contributor, here are the guidelines we would like you to follow:
 
  - [Question or Problem?](#question)
  - [Issues and Bugs](#issue)
@@ -38,7 +47,7 @@ features, by not reporting duplicate issues.  Providing the following informatio
 To ensure consistency throughout the source code, keep these rules in mind as you are working:
 
 * All features or bug fixes **must be tested** by one or more specs.
-* In general we should follow [TypeScript naming conventions][ts-naming]:
+* In general we should follow [TypeScript naming conventions][typescript-naming]:
 
 #### Classes:
 - Example: `Compiler`, `ApplicationMetadata`
@@ -110,10 +119,12 @@ reference GitHub issues that this commit **Closes**.
 
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
 
-> This file was created based on the [Angular2 Contributing][ng-contrib] standards.
+> This file was created based on the [Angular2 Contributing][angular2-contrib] standards.
 
-[github]: https://github.com/ghpabs/angular2-seed
-[gitter]: https://gitter.im/ghpabs/angular2-seed
 [readme]: https://github.com/ghpabs/angular2-seed/blob/master/README.md
-[ts-naming]: https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines
-[ng-contrib]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md
+[gitter]: https://gitter.im/ghpabs/angular2-seed
+[github]: https://github.com/ghpabs/angular2-seed
+[github-markdown]: https://help.github.com/articles/github-flavored-markdown
+
+[typescript-naming]: https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines
+[angular2-contrib]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md
