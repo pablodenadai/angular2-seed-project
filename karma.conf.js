@@ -14,6 +14,7 @@ module.exports = function(karma) {
 			/** Paths loaded by Karma */
 			{ pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: true },
 			{ pattern: 'node_modules/systemjs/dist/system.src.js', included: true },
+			{ pattern: 'node_modules/es6-shim/es6-shim.js', included: true },
 			{ pattern: 'node_modules/rxjs/bundles/Rx.js', included: true },
 			{ pattern: 'node_modules/angular2/bundles/angular2-polyfills.js', included: true },
 			{ pattern: 'node_modules/angular2/bundles/angular2.dev.js', included: true },

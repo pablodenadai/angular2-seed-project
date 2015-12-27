@@ -3,6 +3,7 @@ module.exports = {
 		// Files to be included in the `index.html`.
 		includes: [
 			'build/lib/system.js',
+			'build/lib/es6-shim.js',
 			'build/lib/Rx.js',
 			'build/lib/angular2-polyfills.js',
 			'build/lib/angular2.dev.js',
@@ -16,6 +17,7 @@ module.exports = {
 		libs: {
 			js: [
 				'node_modules/systemjs/dist/system.js',
+				'node_modules/es6-shim/es6-shim.js',
 				'node_modules/rxjs/bundles/Rx.js',
 				'node_modules/angular2/bundles/angular2-polyfills.js',
 				'node_modules/angular2/bundles/angular2.dev.js',
@@ -36,6 +38,7 @@ module.exports = {
 		libs: {
 			js: [
 				'node_modules/systemjs/dist/system.js',
+				'node_modules/es6-shim/es6-shim.min.js',
 				'node_modules/rxjs/bundles/Rx.min.js',
 				'node_modules/angular2/bundles/angular2-polyfills.min.js',
 				'node_modules/angular2/bundles/angular2.min.js',
