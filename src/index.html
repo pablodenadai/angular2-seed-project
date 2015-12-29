@@ -28,7 +28,7 @@
 	</div>
 
 	<script>
-		<!-- @if dev -->
+		<!-- @if isDev -->
 		System
 			.config({
 				packages: { 'js': { defaultExtension: 'js' } }
@@ -39,7 +39,7 @@
 			.catch(console.error.bind(console));
 		<!-- @endif -->
 
-		<!-- @if prod -->
+		<!-- @if isProd -->
 		System
 			.config({
 				bundles: { 'js/app.js': ['app'] }

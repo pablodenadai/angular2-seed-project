@@ -39,7 +39,7 @@ export class AppComponent {
 	public title = 'Angular 2 Seed';
 }
 
-// @if prod
+// @if isProd
 enableProdMode();
 // @endif
 

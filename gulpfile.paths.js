@@ -1,19 +1,5 @@
 module.exports = {
 	dev: {
-		// Files to be included in the `index.html`.
-		includes: [
-			'build/lib/system.js',
-			'build/lib/es6-shim.js',
-			'build/lib/Rx.js',
-			'build/lib/angular2-polyfills.js',
-			'build/lib/angular2.dev.js',
-			'build/lib/router.dev.js',
-			'build/lib/http.dev.js',
-
-			'build/css/app.css'
-		],
-
-		// Files to be processed by Gulp.
 		libs: {
 			js: [
 				'node_modules/systemjs/dist/system.js',
@@ -28,13 +14,6 @@ module.exports = {
 	},
 
 	prod: {
-		// Files to be included in the `index.html`.
-		includes: [
-			'build/lib/*',
-			'build/css/*'
-		],
-
-		// Files to be processed by Gulp.
 		libs: {
 			js: [
 				'node_modules/systemjs/dist/system.js',
