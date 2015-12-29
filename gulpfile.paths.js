@@ -1,14 +1,21 @@
+'use strict';
+
+let baseLibs = [
+	'node_modules/systemjs/dist/system.js',
+	'node_modules/es6-shim/es6-shim.js',
+	'node_modules/rxjs/bundles/Rx.js',
+	'node_modules/angular2/bundles/angular2-polyfills.js',
+	'node_modules/angular2/bundles/angular2.dev.js',
+	'node_modules/angular2/bundles/router.dev.js',
+	'node_modules/angular2/bundles/http.dev.js'
+];
+
 module.exports = {
 	dev: {
 		libs: {
 			js: [
-				'node_modules/systemjs/dist/system.js',
-				'node_modules/es6-shim/es6-shim.js',
-				'node_modules/rxjs/bundles/Rx.js',
-				'node_modules/angular2/bundles/angular2-polyfills.js',
-				'node_modules/angular2/bundles/angular2.dev.js',
-				'node_modules/angular2/bundles/router.dev.js',
-				'node_modules/angular2/bundles/http.dev.js'
+				...baseLibs
+				// Add dev only libs here - eg 'node_modules/debug-lib/index.js'
 			]
 		}
 	},
@@ -16,13 +23,8 @@ module.exports = {
 	prod: {
 		libs: {
 			js: [
-				'node_modules/systemjs/dist/system.js',
-				'node_modules/es6-shim/es6-shim.min.js',
-				'node_modules/rxjs/bundles/Rx.min.js',
-				'node_modules/angular2/bundles/angular2-polyfills.min.js',
-				'node_modules/angular2/bundles/angular2.min.js',
-				'node_modules/angular2/bundles/router.min.js',
-				'node_modules/angular2/bundles/http.min.js'
+				...baseLibs
+				// Add prod only libs here - eg 'node_modules/analytics-lib/index.js'
 			]
 		}
 	}
