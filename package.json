@@ -5,7 +5,7 @@
     "url": "https://github.com/ghpabs/angular2-seed"
   },
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Angular 2 Seed Project – TypeScript, Gulp, Karma, Protractor, Sass.",
   "scripts": {
     "start": "gulp build serve"
