@@ -1,3 +1,5 @@
+require('reflect-metadata');
+
 exports.config = {
 	framework: 'jasmine2',
 	baseUrl: 'http://localhost:8080/',

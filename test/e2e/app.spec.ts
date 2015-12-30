@@ -1,5 +1,4 @@
-/// <reference path="../../node_modules/angular2/typings/angular-protractor/angular-protractor" />
-/// <reference path="../../node_modules/angular2/typings/jasmine/jasmine" />
+import {it, describe, expect, beforeEach} from 'angular2/testing';
 
 import {App} from './app.page';
 
