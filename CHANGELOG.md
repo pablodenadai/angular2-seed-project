@@ -1,3 +1,14 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/ghpabs/angular2-seed/compare/v1.0.0...v1.0.1) (2016-01-04)
+
+
+### Features
+
+* **unit:** update karma browser to phantomjs2 instead of chrome ([330301f](https://github.com/ghpabs/angular2-seed/commit/330301f))
+* implement commit-msg validation hook and automated changelog ([be8d005](https://github.com/ghpabs/angular2-seed/commit/be8d005))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2016-01-04)
 
