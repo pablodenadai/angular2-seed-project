@@ -8,7 +8,8 @@
   "version": "1.0.0",
   "description": "Angular 2 Seed Project – TypeScript, Gulp, Karma, Protractor, Sass.",
   "scripts": {
-    "start": "gulp build serve"
+    "start": "gulp build serve",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w"
   },
   "author": "Pabs",
   "dependencies": {
@@ -24,6 +25,7 @@
   "devDependencies": {
     "connect-history-api-fallback": "1.1.0",
     "del": "2.1.0",
+    "ghooks": "1.0.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-concat": "2.6.0",
     "gulp-connect": "2.2.0",
@@ -51,6 +53,12 @@
     "merge-stream": "1.0.0",
     "remap-istanbul": "0.4.0",
     "tslint": "3.2.0-dev.1",
-    "typescript": "1.8.0-dev.20151204"
+    "typescript": "1.8.0-dev.20151204",
+    "validate-commit-msg": "1.0.0"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    }
   }
 }

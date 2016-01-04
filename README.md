@@ -23,6 +23,7 @@ Light-weight and easy to use seed project for Angular 2 apps.
 - **TypeScript** linting, sourcemaps and transpilation (ES5).
 - **Sass** linting, sourcemaps and transpilation.
 - **TypeDoc** documentation generator.
+- **Change Log** generated based on Git metadata.
 
 ## Angular 2 Features
 - Directives
@@ -69,8 +70,25 @@ You might have noticed that we have quite a few files in our `root` folder. You 
 - **.travis.yml**: Travis is our Continuos Integration (CI) server and this is its configuration file. We have added hooks to GitHub so automated tests will kick in after each commit.
 - **karma.shim.js**: Unit testing Angular2 apps is still in its early days and this file helps us setup the test runner - Karma.
 
+## Change Log
+This project generates the `CHANGELOG.md` from Git metadata using the [conventional-changelog](https://github.com/ajoslin/conventional-changelog) library.
+
+Note that the commit messages must follow [Angular conventions][angular-commit-message-format] for this feature to work.
+
+### Recommended Workflow
+- Make changes
+- Commit those changes
+- Make sure Travis turns green
+- Bump version in `package.json`
+- Run `npm run changelog`
+- Commit `package.json` and `CHANGELOG.md` files
+- Tag
+- Push
+
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. When submitting a PR, make sure that the commit messages match the [Angular conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit-message-format).
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. When submitting a PR, make sure that the commit messages match the [Angular conventions][angular-commit-message-format].
 
 ## License
 MIT
+
+[angular-commit-message-format]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit-message-format
