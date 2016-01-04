@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {Injectable} from 'angular2/core';
 import {Http, Request, Response, RequestMethod, RequestOptions, BaseRequestOptions} from 'angular2/http';
 
-@Injectable()
 export class RestOptions extends BaseRequestOptions {
 	constructor() {
 		super();
