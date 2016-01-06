@@ -3,6 +3,7 @@
 /docs
 /build
 /coverage
+/typings
 /.karma
 /.protractor
 

@@ -11,6 +11,7 @@ Light-weight and easy to use seed project for Angular 2 apps.
 - [Gulp 4](http://gulpjs.com/)
 - [Angular 2](https://angular.io/)
 - [TypeScript](http://www.typescriptlang.org/)
+- [Typings](https://github.com/typings/typings)
 - [Sass](http://sass-lang.com/)
 - [Karma](http://karma-runner.github.io/)
 - [Protractor](http://www.protractortest.org/)
@@ -20,7 +21,7 @@ Light-weight and easy to use seed project for Angular 2 apps.
 - **Development** and **production** environment targets.
 - **Unit** and **E2E** test samples.
 - **Code coverage** report with TypeScript mapping.
-- **TypeScript** linting, sourcemaps and transpilation (ES5).
+- **TypeScript** definition manager, linting, sourcemaps and transpilation (ES5).
 - **Sass** linting, sourcemaps and transpilation.
 - **TypeDoc** documentation generator.
 - **Change Log** generated based on Git metadata.

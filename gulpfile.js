@@ -87,7 +87,7 @@ function scss() {
 }
 
 function typedoc() {
-	return gulp.src('src/scripts/**/*.ts')
+	return gulp.src(['src/scripts/**/*.ts', 'typings/main.d.ts'])
 		.pipe(plugins.typedoc({
 			module: 'commonjs',
 			target: 'es5',
@@ -102,7 +102,7 @@ var tsProject = plugins.typescript.createProject('tsconfig.json', {
 });
 
 function ts() {
-	var tsResult = gulp.src('src/scripts/**/*.ts')
+	var tsResult = gulp.src(['src/scripts/**/*.ts', 'typings/main.d.ts'])
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'))
 		.pipe(plugins.preprocess({ context: env }))
@@ -164,7 +164,7 @@ function karmaTs(root) {
 
 	var caller = arguments.callee.caller.name;
 
-	var tsResult = gulp.src(path.join(root, '/**/*.ts'))
+	var tsResult = gulp.src([path.join(root, '/**/*.ts'), 'typings/main.d.ts'])
 		.pipe(plugins.preprocess({ context: env }))
 		.pipe(plugins.inlineNg2Template({ useRelativePaths: true }))
 		.pipe(plugins.sourcemaps.init())
@@ -210,7 +210,7 @@ var protractorTsProject = plugins.typescript.createProject('tsconfig.json', {
 });
 
 function protractorTsSpec() {
-	var tsResult = gulp.src('test/e2e/**/*.ts')
+	var tsResult = gulp.src(['test/e2e/**/*.ts', 'typings/main.d.ts'])
 		.pipe(plugins.typescript(protractorTsProject));
 
 	return tsResult.js
