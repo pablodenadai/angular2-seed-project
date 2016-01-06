@@ -57,16 +57,23 @@ module.exports = function(karma) {
 		 * @param browsers {Array} List of browsers for Karma to run the tests against.
 		 * We can use `Chrome`, `Firefox` or `PhantomJS2` out-of-the-box here.
 		 */
-		browsers: ['PhantomJS2']
+		browsers: ['PhantomJS2'],
+
+		customLaunchers: {
+			ChromeTravisCI: {
+				base: 'Chrome',
+				flags: ['--no-sandbox']
+			}
+		}
 	};
 
 	/**
-	 * `PhantomJS2` support is limited in Travis CI so we use `Firefox` instead.
-	 * Note that we also need to configure Travis so it enables Firefox.
+	 * `PhantomJS2` support is limited in Travis CI so we use `Chrome` instead.
+	 * Note that we also need to configure Travis so it enables Chrome.
 	 * See `before_script` in the `.travis.yml` file.
 	*/
 	if (process.env.TRAVIS) {
-		config.browsers = ['Firefox'];
+		config.browsers = ['ChromeTravisCI'];
 	}
 
 	karma.set(config);
