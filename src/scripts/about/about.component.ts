@@ -4,6 +4,6 @@ import {Component, View} from 'angular2/core';
 	selector: 'about'
 })
 @View({
-	templateUrl: './about/about.template.html'
+	templateUrl: './about.template.html'
 })
 export class AboutComponent {}

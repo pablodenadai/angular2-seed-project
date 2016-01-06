@@ -31,7 +31,7 @@
     "gulp-connect": "2.2.0",
     "gulp-if": "2.0.0",
     "gulp-inject": "3.0.0",
-    "gulp-inline-ng2-template": "0.0.9",
+    "gulp-inline-ng2-template": "0.0.10",
     "gulp-load-plugins": "1.1.0",
     "gulp-preprocess": "2.0.0",
     "gulp-protractor": "2.1.0",

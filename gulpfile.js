@@ -106,7 +106,7 @@ function ts() {
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'))
 		.pipe(plugins.preprocess({ context: env }))
-		.pipe(plugins.inlineNg2Template({ base: 'src/scripts' }))
+		.pipe(plugins.inlineNg2Template({ useRelativePaths: true }))
 		.pipe(plugins.if(env.isDev, plugins.sourcemaps.init()))
 		.pipe(plugins.typescript(tsProject));
 
@@ -166,7 +166,7 @@ function karmaTs(root) {
 
 	var tsResult = gulp.src(path.join(root, '/**/*.ts'))
 		.pipe(plugins.preprocess({ context: env }))
-		.pipe(plugins.inlineNg2Template({ base: root }))
+		.pipe(plugins.inlineNg2Template({ useRelativePaths: true }))
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.typescript(karmaTsProject));
 
