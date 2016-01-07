@@ -10,49 +10,49 @@ import {RestService, RestOptions} from '../../../src/scripts/shared/services/res
 
 describe('TodoService', () => {
 	beforeEachProviders(() => [
-    TodoService,
-    RestService,
-    RestOptions,
+		TodoService,
+		RestService,
+		RestOptions,
 
-    MockBackend,
-    BaseRequestOptions,
-    provide(Http, {
-      useFactory: (backend, defaultOptions) => {
-        return new Http(backend, defaultOptions);
-      },
-      deps: [
-        MockBackend
-      ]
-    })
-  ]);
+		MockBackend,
+		BaseRequestOptions,
+		provide(Http, {
+			useFactory: (backend: MockBackend, defaultOptions: BaseRequestOptions) => {
+				return new Http(backend, defaultOptions);
+			},
+			deps: [
+				MockBackend, BaseRequestOptions
+			]
+		})
+	]);
 
 	describe('TodoService', () => {
 		it('should be defined', inject([TodoService], (service: TodoService) => {
 			expect(service).toBeDefined();
 		}));
 
-    describe('create()', () => {
-      it('should add a new todo', inject([TodoService], (service: TodoService) => {
-        expect(service.todos.length).toBe(0);
+		describe('create()', () => {
+			it('should add a new todo', inject([TodoService], (service: TodoService) => {
+				expect(service.todos.length).toBe(0);
 
-        let todo: Todo = new Todo('Water the plants');
-        service.create(todo);
+				let todo: Todo = new Todo('Water the plants');
+				service.create(todo);
 
-        expect(service.todos.length).toBe(1);
-      }));
-    });
+				expect(service.todos.length).toBe(1);
+			}));
+		});
 
-    describe('delete()', () => {
-      it('should remove a todo', inject([TodoService], (service: TodoService) => {
-        expect(service.todos.length).toBe(0);
+		describe('delete()', () => {
+			it('should remove a todo', inject([TodoService], (service: TodoService) => {
+				expect(service.todos.length).toBe(0);
 
-        let todo: Todo = new Todo('Water the plants');
-        service.create(todo);
-        expect(service.todos.length).toBe(1);
+				let todo: Todo = new Todo('Water the plants');
+				service.create(todo);
+				expect(service.todos.length).toBe(1);
 
-        service.delete(todo);
-        expect(service.todos.length).toBe(0);
-      }));
-    });
+				service.delete(todo);
+				expect(service.todos.length).toBe(0);
+			}));
+		});
 	});
 });

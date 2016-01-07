@@ -37,7 +37,7 @@ gulp.task(clean);
 
 gulp.task('build', gulp.series(
 	clean,
-	gulp.parallel(scss, ts),
+	gulp.parallel(scss, tsSrc),
 	assets,
 	index,
 	typedoc
@@ -87,7 +87,7 @@ function scss() {
 }
 
 function typedoc() {
-	return gulp.src(['src/scripts/**/*.ts', 'typings/main.d.ts'])
+	return gulp.src(['typings/main.d.ts', 'src/scripts/**/*.ts'])
 		.pipe(plugins.typedoc({
 			module: 'commonjs',
 			target: 'es5',
@@ -96,28 +96,40 @@ function typedoc() {
 		}));
 }
 
-var tsProject = plugins.typescript.createProject('tsconfig.json', {
-	typescript: require('typescript'),
-	outFile: env.isProd ? 'app.js' : undefined
-});
+function ts(filesRoot, filesGlob, filesDest, project) {
+	var title = arguments.callee.caller.name;
 
-function ts() {
-	var tsResult = gulp.src(['src/scripts/**/*.ts', 'typings/main.d.ts'])
+	var result = gulp.src(['typings/main.d.ts', ...filesGlob])
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'))
 		.pipe(plugins.preprocess({ context: env }))
 		.pipe(plugins.inlineNg2Template({ useRelativePaths: true }))
 		.pipe(plugins.if(env.isDev, plugins.sourcemaps.init()))
-		.pipe(plugins.typescript(tsProject));
+		.pipe(plugins.typescript(project));
 
-	return tsResult.js
+	return result.js
 		.pipe(plugins.if(env.isProd, plugins.uglify()))
 		.pipe(plugins.if(env.isDev, plugins.sourcemaps.write({
-			sourceRoot: path.join(__dirname, '/src/scripts')
+			sourceRoot: path.join(__dirname, '/', filesRoot)
 		})))
-		.pipe(plugins.size({ title: 'ts' }))
-		.pipe(gulp.dest('build/js'))
+		.pipe(plugins.size({ title }))
+		.pipe(gulp.dest(filesDest))
 		.pipe(plugins.connect.reload());
+}
+
+var tsProject = plugins.typescript.createProject('tsconfig.json', {
+	typescript: require('typescript'),
+	outFile: env.isProd ? 'app.js' : undefined
+});
+
+function tsSrc() {
+	var filesRoot = 'src/scripts';
+	var filesDest = 'build/js';
+	var filesGlob = [
+		`${filesRoot}/**/*.ts`
+	];
+
+	return ts(filesRoot, filesGlob, filesDest, tsProject);
 }
 
 function assets() {
@@ -139,12 +151,14 @@ function assets() {
 }
 
 function index() {
-	var css = 'build/css/*';
-	var libs = env.isProd ?
-		'build/libs/*' :
-		env.paths.libs.js.map(lib => path.join('build/libs/', lib));
+	var css = ['build/css/*'];
+	var libs = ['build/libs/*'];
 
-	var source = gulp.src([].concat(css, libs), { read: false });
+	if (env.isDev) {
+		libs = env.paths.libs.js.map(lib => path.join('build/libs/', lib))
+	}
+
+	var source = gulp.src([...css, ...libs], { read: false });
 
 	return gulp.src('src/index.html')
 		.pipe(plugins.inject(source, { ignorePath: 'build' }))
@@ -158,22 +172,17 @@ function karmaClean() {
 }
 
 function karmaTs(root) {
-	var karmaTsProject = plugins.typescript.createProject('tsconfig.json', {
+	var project = plugins.typescript.createProject('tsconfig.json', {
 		typescript: require('typescript')
 	});
 
-	var caller = arguments.callee.caller.name;
+	var filesRoot = root;
+	var filesDest = `.karma/${root}`;
+	var filesGlob = [
+		`${root}/**/*.ts`
+	];
 
-	var tsResult = gulp.src([path.join(root, '/**/*.ts'), 'typings/main.d.ts'])
-		.pipe(plugins.preprocess({ context: env }))
-		.pipe(plugins.inlineNg2Template({ useRelativePaths: true }))
-		.pipe(plugins.sourcemaps.init())
-		.pipe(plugins.typescript(karmaTsProject));
-
-	return tsResult.js
-		.pipe(plugins.sourcemaps.write({ sourceRoot: path.join(__dirname, root) }))
-		.pipe(plugins.size({ title: caller }))
-		.pipe(gulp.dest(path.join('.karma', root)));
+	return ts(filesRoot, filesGlob, filesDest, project);
 }
 
 function karmaTsSrc() {
@@ -210,12 +219,13 @@ var protractorTsProject = plugins.typescript.createProject('tsconfig.json', {
 });
 
 function protractorTsSpec() {
-	var tsResult = gulp.src(['test/e2e/**/*.ts', 'typings/main.d.ts'])
-		.pipe(plugins.typescript(protractorTsProject));
+	var filesRoot = 'test/e2e';
+	var filesDest = `.protractor/${filesRoot}`;
+	var filesGlob = [
+		`${filesRoot}/**/*.ts`
+	];
 
-	return tsResult.js
-		.pipe(plugins.size({ title: 'protractorTsSpec' }))
-		.pipe(gulp.dest('.protractor/test/e2e'));
+	return ts(filesRoot, filesGlob, filesDest, protractorTsProject);
 }
 
 function protractorUpdate(done) {
@@ -231,7 +241,7 @@ function protractorRun() {
 }
 
 function watch() {
-	gulp.watch('src/scripts/**/*.{ts,css,html}', gulp.series(ts, 'unit'));
+	gulp.watch('src/scripts/**/*.{ts,css,html}', gulp.series(tsSrc, 'unit'));
 	gulp.watch('src/scss/**/*.scss', scss);
 	gulp.watch('src/index.html', index);
 	gulp.watch('test/unit/**/*.ts', gulp.series('unit'));
