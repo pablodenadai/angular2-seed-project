@@ -1,3 +1,14 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/ghpabs/angular2-seed/compare/v1.0.1...v1.1.0) (2016-01-07)
+
+
+### Features
+
+* **build:** enable component template relative path ([750aa73](https://github.com/ghpabs/angular2-seed/commit/750aa73))
+* **build:** implement type definition manager for TypeScript ([9214cf7](https://github.com/ghpabs/angular2-seed/commit/9214cf7))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/ghpabs/angular2-seed/compare/v1.0.0...v1.0.1) (2016-01-04)
 
