@@ -29,24 +29,28 @@
 
 	<script>
 		<!-- @if isDev -->
-		System
-			.config({
-				packages: { 'js': { defaultExtension: 'js' } }
-			});
+		/**
+		 * The package name `js` matches the folder structure inside `/build`.
+		 * And the `main` property points to the app entry file - `bootstrap.js`.
+		 */
+		System.config({
+			packages: { 'js': { main: 'bootstrap.js' } }
+		});
 
-		System
-			.import('js/app.js')
+		System.import('js')
 			.catch(console.error.bind(console));
 		<!-- @endif -->
 
 		<!-- @if isProd -->
-		System
-			.config({
-				bundles: { 'js/app.js': ['app'] }
-			});
+		/**
+		 * The bundle name `js/app.js` matches the file under the `/build` folder.
+		 * It also maps the entry dependecy module - `bootstrap`.
+		 */
+		System.config({
+			bundles: { 'js/app.js': ['bootstrap'] }
+		});
 
-		System
-			.import('app')
+		System.import('bootstrap')
 			.catch(console.error.bind(console));
 		<!-- @endif -->
 	</script>

@@ -1,12 +1,14 @@
-import {bootstrap} from 'angular2/platform/browser';
-import {Component, View, enableProdMode} from 'angular2/core';
+import {Component, View} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
 import {TodoComponent} from './todo/todo.component';
 import {AboutComponent} from './about/about.component';
 
 @Component({
-	selector: 'app'
+	selector: 'app',
+	providers: [
+		ROUTER_PROVIDERS
+	]
 })
 @View({
 	directives: [ROUTER_DIRECTIVES],
@@ -38,11 +40,3 @@ export class AppComponent {
 	 */
 	public title = 'Angular 2 Seed';
 }
-
-// @if isProd
-enableProdMode();
-// @endif
-
-bootstrap(AppComponent, [
-	ROUTER_PROVIDERS
-]);
