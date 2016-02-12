@@ -87,7 +87,7 @@ function scss() {
 }
 
 function typedoc() {
-	return gulp.src(['typings/main.d.ts', 'src/scripts/**/*.ts'])
+	return gulp.src(['src/scripts/**/*.ts', ...paths.typings])
 		.pipe(plugins.typedoc({
 			module: 'commonjs',
 			target: 'es5',
@@ -99,7 +99,7 @@ function typedoc() {
 function ts(filesRoot, filesGlob, filesDest, project) {
 	var title = arguments.callee.caller.name;
 
-	var result = gulp.src(['typings/main.d.ts', ...filesGlob])
+	var result = gulp.src([...filesGlob, ...paths.typings])
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'))
 		.pipe(plugins.preprocess({ context: env }))
@@ -108,7 +108,9 @@ function ts(filesRoot, filesGlob, filesDest, project) {
 		.pipe(plugins.typescript(project));
 
 	return result.js
-		.pipe(plugins.if(env.isProd, plugins.uglify()))
+		.pipe(plugins.if(env.isProd, plugins.uglify({
+			mangle: false
+		})))
 		.pipe(plugins.if(env.isDev, plugins.sourcemaps.write({
 			sourceRoot: path.join(__dirname, '/', filesRoot)
 		})))
@@ -143,7 +145,9 @@ function assets() {
 
 	var libs = gulp.src(env.paths.libs.js, { base: '.' })
 		.pipe(plugins.if(env.isProd, plugins.concat('libs.js')))
-		.pipe(plugins.if(env.isProd, plugins.uglify()))
+		.pipe(plugins.if(env.isProd, plugins.uglify({
+			mangle: false
+		})))
 		.pipe(plugins.size({ title: 'libs' }))
 		.pipe(gulp.dest('build/libs'));
 

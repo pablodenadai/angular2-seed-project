@@ -2,6 +2,9 @@
   "dependencies": {},
   "devDependencies": {},
   "ambientDependencies": {
-    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#1469ae2d0c260c082517bfb971be8c14e2389fe5"
+    "angular-protractor": "github:DefinitelyTyped/DefinitelyTyped/angular-protractor/angular-protractor.d.ts#17fa1e5f269189f7f8e0f53f8c443e6c2eac562c",
+    "jasmine": "github:DefinitelyTyped/DefinitelyTyped/jasmine/jasmine.d.ts#dd638012d63e069f2c99d06ef4dcc9616a943ee4",
+    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#1469ae2d0c260c082517bfb971be8c14e2389fe5",
+    "selenium-webdriver": "github:DefinitelyTyped/DefinitelyTyped/selenium-webdriver/selenium-webdriver.d.ts#a83677ed13add14c2ab06c7325d182d0ba2784ea"
   }
 }

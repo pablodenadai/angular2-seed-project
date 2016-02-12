@@ -12,6 +12,11 @@ let baseLibs = [
 ];
 
 module.exports = {
+	typings: [
+		'node_modules/angular2/typings/browser.d.ts',
+		'typings/main.d.ts'
+	],
+
 	dev: {
 		libs: {
 			js: [
