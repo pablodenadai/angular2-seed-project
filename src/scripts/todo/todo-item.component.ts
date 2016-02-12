@@ -39,8 +39,8 @@ export class TodoItemComponent {
 	@Output('delete') deleteEmitter: EventEmitter<ITodo> = new EventEmitter();
 	@Output('update') updateEmitter: EventEmitter<ITodo> = new EventEmitter();
 
-	delete(todox: ITodo): void {
-		this.deleteEmitter.emit(todox);
+	delete(todo: ITodo): void {
+		this.deleteEmitter.emit(todo);
 	}
 
 	update(todo: ITodo): void {
