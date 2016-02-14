@@ -12,6 +12,7 @@ before_install:
   - npm install typings -g
 install:
   - npm install
+  - typings install
 before_script:
   - gulp build
 script:
