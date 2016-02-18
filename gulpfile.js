@@ -16,6 +16,14 @@ var del = require('del'),
 
 var paths = require('./gulpfile.paths.js');
 
+var DEST_DIR = 'dist';
+var SRC_DIR = 'src';
+var TEST_DIR = 'test';
+var DOC_DIR = 'doc';
+var COV_DIR = 'coverage';
+var KRM_DIR = '.karma';
+var PRO_DIR = '.protractor';
+
 process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
 process.env.PORT = process.env.PORT ? process.env.PORT : '8080';
 
@@ -69,11 +77,11 @@ gulp.task('e2e', gulp.series(
  */
 
 function clean() {
-	return del(['docs', 'coverage', 'build', '.karma', '.protractor']);
+	return del([`${DOC_DIR}`, `${COV_DIR}`, `${DEST_DIR}`, `${KRM_DIR}`, `${PRO_DIR}`]);
 }
 
 function scss() {
-	return gulp.src('src/**/*.{scss,sass}', { base: 'src/scss' })
+	return gulp.src('src/**/*.{scss,sass}', { base: `${SRC_DIR}/scss` })
 		.pipe(plugins.sassLint({ config: '.sass-lint.yml' }))
 		.pipe(plugins.sassLint.format())
 		.pipe(plugins.sassLint.failOnError())
@@ -82,12 +90,12 @@ function scss() {
 		.pipe(plugins.sass())
 		.pipe(plugins.if(env.isDev, plugins.sourcemaps.write()))
 		.pipe(plugins.size({ title: 'sass' }))
-		.pipe(gulp.dest('build/css'))
+		.pipe(gulp.dest(`${DEST_DIR}/css`))
 		.pipe(plugins.connect.reload());
 }
 
 function typedoc() {
-	return gulp.src(['src/scripts/**/*.ts', ...paths.typings])
+	return gulp.src([`${SRC_DIR}/scripts/**/*.ts`, ...paths.typings])
 		.pipe(plugins.typedoc({
 			module: 'commonjs',
 			target: 'es5',
@@ -125,8 +133,8 @@ var tsProject = plugins.typescript.createProject('tsconfig.json', {
 });
 
 function tsSrc() {
-	var filesRoot = 'src/scripts';
-	var filesDest = 'build/js';
+	var filesRoot = `${SRC_DIR}/scripts`;
+	var filesDest = `${DEST_DIR}/js`;
 	var filesGlob = [
 		`${filesRoot}/**/*.ts`
 	];
@@ -135,13 +143,13 @@ function tsSrc() {
 }
 
 function assets() {
-	var images = gulp.src('src/images/**/*.{png,jpg,gif}')
+	var images = gulp.src(`${SRC_DIR}/images/**/*.{png,jpg,gif}`)
 		.pipe(plugins.size({ title: 'images' }))
-		.pipe(gulp.dest('build/images'));
+		.pipe(gulp.dest(`${DEST_DIR}/images`));
 
-	var fonts = gulp.src('src/fonts/**/*.{eot,ttf,otf,woff}')
+	var fonts = gulp.src(`${SRC_DIR}/fonts/**/*.{eot,ttf,otf,woff}`)
 		.pipe(plugins.size({ title: 'fonts' }))
-		.pipe(gulp.dest('build/fonts'));
+		.pipe(gulp.dest(`${DEST_DIR}/fonts`));
 
 	var libs = gulp.src(env.paths.libs.js, { base: '.' })
 		.pipe(plugins.if(env.isProd, plugins.concat('libs.js')))
@@ -149,30 +157,30 @@ function assets() {
 			mangle: false
 		})))
 		.pipe(plugins.size({ title: 'libs' }))
-		.pipe(gulp.dest('build/libs'));
+		.pipe(gulp.dest(`${DEST_DIR}/libs`));
 
 	return merge(images, fonts, libs);
 }
 
 function index() {
-	var css = ['build/css/*'];
-	var libs = ['build/libs/*'];
+	var css = [`${DEST_DIR}/css/*`];
+	var libs = [`${DEST_DIR}/libs/*`];
 
 	if (env.isDev) {
-		libs = env.paths.libs.js.map(lib => path.join('build/libs/', lib))
+		libs = env.paths.libs.js.map(lib => path.join(`${DEST_DIR}/libs/`, lib))
 	}
 
 	var source = gulp.src([...css, ...libs], { read: false });
 
-	return gulp.src('src/index.html')
-		.pipe(plugins.inject(source, { ignorePath: 'build' }))
+	return gulp.src(`${SRC_DIR}/index.html`)
+		.pipe(plugins.inject(source, { ignorePath: `${DEST_DIR}` }))
 		.pipe(plugins.preprocess({ context: env }))
-		.pipe(gulp.dest('build'))
+		.pipe(gulp.dest( `${DEST_DIR}`))
 		.pipe(plugins.connect.reload());
 }
 
 function karmaClean() {
-	return del(['.karma']);
+	return del([`${KRM_DIR}`]);
 }
 
 function karmaTs(root) {
@@ -181,7 +189,7 @@ function karmaTs(root) {
 	});
 
 	var filesRoot = root;
-	var filesDest = `.karma/${root}`;
+	var filesDest = `${KRM_DIR}/${root}`;
 	var filesGlob = [
 		`${root}/**/*.ts`
 	];
@@ -190,11 +198,11 @@ function karmaTs(root) {
 }
 
 function karmaTsSrc() {
-	return karmaTs('src/scripts');
+	return karmaTs(`${SRC_DIR}/scripts`);
 }
 
 function karmaTsSpec() {
-	return karmaTs('test/unit');
+	return karmaTs(`${TEST_DIR}/unit`);
 }
 
 function karmaRun(done) {
@@ -204,27 +212,28 @@ function karmaRun(done) {
 }
 
 function karmaRemapCoverage() {
-	return gulp.src('coverage/json/coverage-js.json')
+	return gulp.src(`${COV_DIR}/json/coverage-js.json`)
 		.pipe(remapIstanbul({
 			reports: {
-				json: 'coverage/json/coverage-ts.json',
-				html: 'coverage/html-report'
+				json: `${COV_DIR}/json/coverage-ts.json`,
+				html: `${COV_DIR}/html-report`
 			}
 	}));
 }
 
 function protractorClean() {
-	return del(['.protractor']);
+	return del([`${PRO_DIR}`]);
 }
 
+// TODO check to change this below tsconfig
 var protractorTsProject = plugins.typescript.createProject('tsconfig.json', {
 	typescript: require('typescript'),
 	module: 'commonjs'
 });
 
 function protractorTsSpec() {
-	var filesRoot = 'test/e2e';
-	var filesDest = `.protractor/${filesRoot}`;
+	var filesRoot = `${TEST_DIR}/e2e`;
+	var filesDest = `${PRO_DIR}/${filesRoot}`;
 	var filesGlob = [
 		`${filesRoot}/**/*.ts`
 	];
@@ -237,23 +246,23 @@ function protractorUpdate(done) {
 }
 
 function protractorRun() {
-	return gulp.src('.protractor/test/e2e/**/*.spec.js')
+	return gulp.src(`${PRO_DIR}/test/e2e/**/*.spec.js`)
 		.pipe(plugins.protractor.protractor({
-			configFile: 'protractor.conf.js'
+			configFile: __dirname + '/protractor.conf.js'
 		}))
 		.on('error', e => { throw e })
 }
 
 function watch() {
-	gulp.watch('src/scripts/**/*.{ts,css,html}', gulp.series(tsSrc, 'unit'));
-	gulp.watch('src/scss/**/*.scss', scss);
-	gulp.watch('src/index.html', index);
-	gulp.watch('test/unit/**/*.ts', gulp.series('unit'));
+	gulp.watch(`${SRC_DIR}/scripts/**/*.{ts,css,html}`, gulp.series(tsSrc, 'unit'));
+	gulp.watch(`${SRC_DIR}/scss/**/*.scss`, scss);
+	gulp.watch(`${SRC_DIR}/index.html`, index);
+	gulp.watch(`${TEST_DIR}/unit/**/*.ts`, gulp.series('unit'));
 }
 
 function livereload() {
 	return plugins.connect.server({
-		root: 'build',
+		root: `${DEST_DIR}`,
 		livereload: env.isDev,
 		port: env.PORT,
 		middleware: (connect, opt) => [history()]
