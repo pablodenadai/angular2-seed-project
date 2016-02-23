@@ -1,7 +1,11 @@
 /**
  * Usage:
- * `$ NODE_ENV=<development/production> PORT=<port> gulp <task>`
+ * `$ NODE_ENV=<development/production> PORT=<port>``
+ * `$ gulp <task>`
  */
+
+process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
+process.env.PORT = process.env.PORT ? process.env.PORT : '8080';
 
 var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')();
@@ -14,20 +18,7 @@ var del = require('del'),
 	webdriver = require('gulp-protractor').webdriver_update,
 	remapIstanbul = require('remap-istanbul/lib/gulpRemapIstanbul');
 
-var paths = require('./gulpfile.paths.js');
-
-process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
-process.env.PORT = process.env.PORT ? process.env.PORT : '8080';
-
-var env = {
-	NODE_ENV: process.env.NODE_ENV,
-	PORT: process.env.PORT,
-
-	get isDev() { return this.NODE_ENV === 'development'; },
-	get isProd() { return this.NODE_ENV === 'production'; },
-
-	get paths() { return this.isDev ? paths.dev : paths.prod; }
-};
+var env = require('./environment.js');
 
 /**
  * Public Tasks
@@ -37,7 +28,7 @@ gulp.task(clean);
 
 gulp.task('build', gulp.series(
 	clean,
-	gulp.parallel(scss, tsSrc),
+	gulp.parallel(scss, appTs),
 	assets,
 	index,
 	typedoc
@@ -49,8 +40,7 @@ gulp.task('serve', gulp.series(
 
 gulp.task('unit', gulp.series(
 	karmaClean,
-	karmaTsSrc,
-	karmaTsSpec,
+	karmaTs,
 	karmaRun,
 	karmaRemapCoverage,
 	karmaClean
@@ -58,7 +48,7 @@ gulp.task('unit', gulp.series(
 
 gulp.task('e2e', gulp.series(
 	protractorClean,
-	protractorTsSpec,
+	protractorTs,
 	protractorUpdate,
 	protractorRun,
 	protractorClean
@@ -87,19 +77,21 @@ function scss() {
 }
 
 function typedoc() {
-	return gulp.src(['src/scripts/**/*.ts', ...paths.typings])
-		.pipe(plugins.typedoc({
-			module: 'commonjs',
-			target: 'es5',
-			experimentalDecorators: true,
-			out: 'docs'
-		}));
+	return gulp.src([
+		'src/scripts/**/*!(.spec).ts',
+		...env.typings
+	]).pipe(plugins.typedoc({
+		module: 'commonjs',
+		target: 'es5',
+		experimentalDecorators: true,
+		out: 'docs'
+	}));
 }
 
-function ts(filesRoot, filesGlob, filesDest, project) {
+function ts(root, glob, dest, project) {
 	var title = arguments.callee.caller.name;
 
-	var result = gulp.src([...filesGlob, ...paths.typings])
+	var result = gulp.src([glob, ...env.typings])
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'))
 		.pipe(plugins.preprocess({ context: env }))
@@ -108,30 +100,26 @@ function ts(filesRoot, filesGlob, filesDest, project) {
 		.pipe(plugins.typescript(project));
 
 	return result.js
-		.pipe(plugins.if(env.isProd, plugins.uglify({
-			mangle: false
-		})))
+		.pipe(plugins.if(env.isProd, plugins.uglify({ mangle: false })))
 		.pipe(plugins.if(env.isDev, plugins.sourcemaps.write({
-			sourceRoot: path.join(__dirname, '/', filesRoot)
+			sourceRoot: path.join(__dirname, '/', root)
 		})))
 		.pipe(plugins.size({ title }))
-		.pipe(gulp.dest(filesDest))
+		.pipe(gulp.dest(dest))
 		.pipe(plugins.connect.reload());
 }
 
-var tsProject = plugins.typescript.createProject('tsconfig.json', {
+var appTsProject = plugins.typescript.createProject('tsconfig.json', {
 	typescript: require('typescript'),
 	outFile: env.isProd ? 'app.js' : undefined
 });
 
-function tsSrc() {
-	var filesRoot = 'src/scripts';
-	var filesDest = 'build/js';
-	var filesGlob = [
-		`${filesRoot}/**/*.ts`
-	];
+function appTs() {
+	var root = 'src/scripts';
+	var glob = 'src/scripts/**/*!(.spec).ts';
+	var dest = 'build/js';
 
-	return ts(filesRoot, filesGlob, filesDest, tsProject);
+	return ts(root, glob, dest, appTsProject);
 }
 
 function assets() {
@@ -145,9 +133,7 @@ function assets() {
 
 	var libs = gulp.src(env.paths.libs.js, { base: '.' })
 		.pipe(plugins.if(env.isProd, plugins.concat('libs.js')))
-		.pipe(plugins.if(env.isProd, plugins.uglify({
-			mangle: false
-		})))
+		.pipe(plugins.if(env.isProd, plugins.uglify({ mangle: false	})))
 		.pipe(plugins.size({ title: 'libs' }))
 		.pipe(gulp.dest('build/libs'));
 
@@ -156,11 +142,9 @@ function assets() {
 
 function index() {
 	var css = ['build/css/*'];
-	var libs = ['build/libs/*'];
-
-	if (env.isDev) {
-		libs = env.paths.libs.js.map(lib => path.join('build/libs/', lib))
-	}
+	var libs = env.isProd ?
+		['build/libs/*'] :
+		env.paths.libs.js.map(lib => path.join('build/libs/', lib));
 
 	var source = gulp.src([...css, ...libs], { read: false });
 
@@ -175,26 +159,16 @@ function karmaClean() {
 	return del(['.karma']);
 }
 
+var karmaTsProject = plugins.typescript.createProject('tsconfig.json', {
+	typescript: require('typescript')
+});
+
 function karmaTs(root) {
-	var project = plugins.typescript.createProject('tsconfig.json', {
-		typescript: require('typescript')
-	});
+	var root = 'src/scripts';
+	var glob = 'src/scripts/**/*.ts';
+	var dest = '.karma';
 
-	var filesRoot = root;
-	var filesDest = `.karma/${root}`;
-	var filesGlob = [
-		`${root}/**/*.ts`
-	];
-
-	return ts(filesRoot, filesGlob, filesDest, project);
-}
-
-function karmaTsSrc() {
-	return karmaTs('src/scripts');
-}
-
-function karmaTsSpec() {
-	return karmaTs('test/unit');
+	return ts(root, glob, dest, karmaTsProject);
 }
 
 function karmaRun(done) {
@@ -222,14 +196,12 @@ var protractorTsProject = plugins.typescript.createProject('tsconfig.json', {
 	module: 'commonjs'
 });
 
-function protractorTsSpec() {
-	var filesRoot = 'test/e2e';
-	var filesDest = `.protractor/${filesRoot}`;
-	var filesGlob = [
-		`${filesRoot}/**/*.ts`
-	];
+function protractorTs() {
+	var root = 'e2e';
+	var glob = 'e2e/**/*.ts';
+	var dest = '.protractor';
 
-	return ts(filesRoot, filesGlob, filesDest, protractorTsProject);
+	return ts(root, glob, dest, protractorTsProject);
 }
 
 function protractorUpdate(done) {
@@ -237,18 +209,21 @@ function protractorUpdate(done) {
 }
 
 function protractorRun() {
-	return gulp.src('.protractor/test/e2e/**/*.spec.js')
+	return gulp.src('.protractor/**/*.spec.js')
 		.pipe(plugins.protractor.protractor({
-			configFile: 'protractor.conf.js'
+			configFile: __dirname + '/protractor.conf.js'
 		}))
 		.on('error', e => { throw e })
 }
 
 function watch() {
-	gulp.watch('src/scripts/**/*.{ts,css,html}', gulp.series(tsSrc, 'unit'));
+	// Both css and html are included in the glob because it's injected
+	// into the JS files (output) when using external partials.
+	// Injection is done by the `inlineNg2Template` plugin.
+	gulp.watch('src/scripts/**/*.{ts,css,html}', gulp.series(appTs, 'unit'));
+
 	gulp.watch('src/scss/**/*.scss', scss);
 	gulp.watch('src/index.html', index);
-	gulp.watch('test/unit/**/*.ts', gulp.series('unit'));
 }
 
 function livereload() {

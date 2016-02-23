@@ -1,6 +1,6 @@
 import {it, describe, expect} from 'angular2/testing';
 
-import {Todo} from '../../../src/scripts/todo/todo';
+import {Todo} from './todo';
 
 describe('Todo', () => {
 	let todo: Todo;

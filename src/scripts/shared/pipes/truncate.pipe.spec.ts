@@ -1,6 +1,6 @@
 import {it, describe, expect} from 'angular2/testing';
 
-import {TruncatePipe} from '../../../../src/scripts/shared/pipes/truncate.pipe';
+import {TruncatePipe} from './truncate.pipe';
 
 describe('TruncatePipe', () => {
 	let pipe: TruncatePipe;
