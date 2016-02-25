@@ -1,5 +1,8 @@
 'use strict';
 
+process.env.NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
+process.env.PORT = process.env.PORT ? process.env.PORT : '8080';
+
 let baseLibs = [
 	'node_modules/systemjs/dist/system-polyfills.js',
 	'node_modules/systemjs/dist/system.js',

@@ -1,6 +1,6 @@
 'use strict';
 
-var env = require('./environment.js');
+var env = require('./gulpfile.env');
 
 module.exports = function(karma) {
 	var config = {
