@@ -60,10 +60,10 @@ To view the app please open a new tab and go to `http://localhost:8080/`.
 ## Usage
 ### Tasks
 - `$ gulp clean`: Remove generated folders - `build`, `docs` and `coverage`.
-- `$ gulp unit`: Run Karma against all `test/unit/**/*.spec.js` files.
-- `$ gulp e2e`: Run Protractor against all `test/e2e/**/*.e2e.js` files. The project must be being served before running end-to-end tests.
-- `$ gulp build`: Create distribution package. See environment `targets` below.
-- `$ gulp serve`: Start web-server and live-reload. See environment `targets` below.
+- `$ gulp unit`: Run Karma against all `src/scripts/**/*.spec.js` files.
+- `$ gulp e2e`: Run Protractor against all `e2e/**/*.spec.js` files. The project must be being served before running end-to-end tests.
+- `$ gulp build`: Create distribution package.
+- `$ gulp serve`: Start web-server and live-reload.
 
 ### Environments
 Default: `NODE_ENV=development` and `PORT=8080`.
@@ -82,9 +82,7 @@ You might have noticed that we have quite a few files in our `root` folder. You 
 - **karma.shim.js**: Unit testing Angular2 apps is still in its early days and this file helps us setup the test runner - Karma.
 
 ## Change Log
-This project generates the `CHANGELOG.md` from Git metadata using the [conventional-changelog](https://github.com/ajoslin/conventional-changelog) library.
-
-Note that the commit messages must follow [Angular conventions][angular-commit-message-format] for this feature to work.
+This project generates the `CHANGELOG.md` from Git metadata using the [conventional-changelog](https://github.com/ajoslin/conventional-changelog) library. The commit message must follow the [Angular conventions][angular-commit-message-format] for this feature to work.
 
 ### Recommended Workflow
 - Make changes

@@ -6,7 +6,7 @@
  */
 
 /** Tun on full stack traces in errors to help debugging */
-Error.stackTraceLimit=Infinity;
+Error.stackTraceLimit = Infinity;
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
@@ -18,7 +18,7 @@ __karma__.loaded = function() {};
 
 System.config({
 	packages: {
-		'base/.karma/src/scripts': {
+		'base/.karma': {
 			defaultExtension: false,
 			format: 'register',
 			map: Object.keys(window.__karma__.files).
@@ -28,8 +28,12 @@ System.config({
 					 * Creates local module name mapping to global path with karma's fingerprint in path, e.g.:
 					 * './hero.service': '/base/build/js/hero.service.js?f4523daf879cfb7310ef6242682ccf10b2041b3e'
 					 */
-					var moduleName = appPath.replace(/^\/base\/.karma\/src\/scripts\//, './').replace(/\.js$/, '');
+					var moduleName = appPath
+						.replace(/^\/base\/.karma\//, './')
+						.replace(/\.js$/, '');
+
 					pathsMapping[moduleName] = appPath + '?' + window.__karma__.files[appPath]
+
 					return pathsMapping;
 				}, {})
 		}
@@ -61,7 +65,7 @@ function filePath2moduleName(filePath) {
 }
 
 function onlyAppFiles(filePath) {
-	return /^\/base\/.karma\/src\/scripts\/.*\.js$/.test(filePath);
+	return /^\/base\/.karma\/.*\.js$/.test(filePath);
 }
 
 function onlySpecFiles(path) {

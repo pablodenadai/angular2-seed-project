@@ -4,9 +4,9 @@ import {provide} from 'angular2/core';
 import {Http, BaseRequestOptions} from 'angular2/http';
 import {MockBackend} from 'angular2/http/testing';
 
-import {Todo} from '../../../src/scripts/todo/todo';
-import {TodoService} from '../../../src/scripts/todo/todo.service';
-import {RestService, RestOptions} from '../../../src/scripts/shared/services/rest.service';
+import {Todo} from './todo';
+import {TodoService} from './todo.service';
+import {RestService, RestOptions} from '../shared/services/rest.service';
 
 describe('TodoService', () => {
 	beforeEachProviders(() => [
