@@ -1,7 +1,6 @@
 # Folders
 /node_modules
 /docs
-/build
 /coverage
 /typings
 /.karma
