@@ -1,1 +1,1 @@
-web: gulp serve
+web: npm i typings -g && typings install && gulp build serve
