@@ -1,38 +1,50 @@
 'use strict';
 
 var gulp = require('gulp'),
-	plugins = require('gulp-load-plugins')();
+	plugins = require('gulp-load-plugins')(),
+	env = require('./../gulpfile.env');
 
 var karma = require('karma'),
 	del = require('del'),
 	path = require('path'),
 	remapIstanbul = require('remap-istanbul/lib/gulpRemapIstanbul');
 
-var ts = require('./gulp-ts');
-
-var tsKarmaProject = plugins.typescript.createProject('tsconfig.json', {
+var project = plugins.typescript.createProject('tsconfig.json', {
 	typescript: require('typescript')
 });
 
-function clean() {
+function karmaClean() {
 	return del(['.karma']);
 }
 
-function tsKarma(root) {
+function karmaTypescript(root) {
 	var root = 'src/scripts';
 	var glob = 'src/scripts/**/*.ts';
 	var dest = '.karma';
 
-	return ts(root, glob, dest, tsKarmaProject);
+	var result = gulp.src([glob, ...env.typings])
+		.pipe(plugins.tslint())
+		.pipe(plugins.tslint.report('verbose'))
+		.pipe(plugins.preprocess({ context: env }))
+		.pipe(plugins.inlineNg2Template({ useRelativePaths: true }))
+		.pipe(plugins.sourcemaps.init())
+		.pipe(plugins.typescript(project));
+
+	return result.js
+		.pipe(plugins.sourcemaps.write({
+			sourceRoot: path.join(__dirname, '../', root)
+		}))
+		.pipe(plugins.size({ title: 'typescript' }))
+		.pipe(gulp.dest(dest));
 }
 
-function run(done) {
+function karmaRun(done) {
 	return new karma.Server({
 		configFile: path.join(__dirname, '../karma.conf.js')
 	}, done).start();
 }
 
-function remapCoverage() {
+function karmaRemapIstanbul() {
 	return gulp.src('coverage/json/coverage-js.json')
 		.pipe(remapIstanbul({
 			reports: {
@@ -43,9 +55,9 @@ function remapCoverage() {
 }
 
 module.exports = gulp.series(
-	clean,
-	tsKarma,
-	run,
-	remapCoverage,
-	clean
+	karmaClean,
+	karmaTypescript,
+	karmaRun,
+	karmaRemapIstanbul,
+	karmaClean
 );

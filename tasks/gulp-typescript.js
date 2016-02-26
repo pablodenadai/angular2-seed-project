@@ -4,7 +4,16 @@ var gulp = require('gulp'),
 
 var path = require('path');
 
-module.exports = function ts(root, glob, dest, project) {
+var project = plugins.typescript.createProject('tsconfig.json', {
+	typescript: require('typescript'),
+	outFile: env.isProd ? 'app.js' : undefined
+});
+
+module.exports = function typescript() {
+	var root = 'src/scripts';
+	var glob = 'src/scripts/**/*!(.spec).ts';
+	var dest = 'build/js';
+
 	var result = gulp.src([glob, ...env.typings])
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'))
@@ -18,7 +27,7 @@ module.exports = function ts(root, glob, dest, project) {
 		.pipe(plugins.if(env.isDev, plugins.sourcemaps.write({
 			sourceRoot: path.join(__dirname, '../', root)
 		})))
-		.pipe(plugins.size({ title: 'ts' }))
+		.pipe(plugins.size({ title: 'typescript' }))
 		.pipe(gulp.dest(dest))
 		.pipe(plugins.connect.reload());
 };
