@@ -17,7 +17,7 @@ module.exports = function assets() {
 
 	var libs = gulp.src(env.paths.libs.js, { base: '.' })
 		.pipe(plugins.if(env.isProd, plugins.concat('libs.js')))
-		.pipe(plugins.if(env.isProd, plugins.uglify({ mangle: false	})))
+		.pipe(plugins.if(env.isProd, plugins.uglify({ mangle: false })))
 		.pipe(plugins.size({ title: 'libs' }))
 		.pipe(gulp.dest('build/libs'));
 
