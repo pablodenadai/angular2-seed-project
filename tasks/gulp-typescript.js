@@ -11,10 +11,13 @@ var project = plugins.typescript.createProject('tsconfig.json', {
 
 module.exports = function typescript() {
 	var root = 'src/scripts';
-	var glob = 'src/scripts/**/*!(.spec).ts';
+	var glob = [
+		'src/scripts/**/*.ts',
+		'!src/scripts/**/*.spec.ts'
+	];
 	var dest = 'build/js';
 
-	var result = gulp.src([glob, ...env.typings])
+	var result = gulp.src([...glob, ...env.typings])
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'))
 		.pipe(plugins.preprocess({ context: env }))
