@@ -10,7 +10,7 @@ var index = require('./gulp-index'),
 module.exports = function watch() {
 	// Both `css` and `html` are included in the glob because it's injected
 	// into the JS files (output) when using external partials.
-	// Injection is done by the `inlineNg2Template` plugin in the `appTs` task.
+	// Injection is done by the `inlineNg2Template` plugin in the `typescript` task.
 	gulp.watch([
 		'src/scripts/**/*.ts',
 		'src/scripts/**/*.css',
