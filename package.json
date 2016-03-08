@@ -49,6 +49,7 @@
     "karma-coverage": "0.5.3",
     "karma-firefox-launcher": "0.1.7",
     "karma-jasmine": "0.3.6",
+    "karma-phantomjs-launcher": "1.0.0",
     "karma-phantomjs2-launcher": "0.3.2",
     "merge-stream": "1.0.0",
     "remap-istanbul": "0.4.0",
