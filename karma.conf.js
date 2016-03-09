@@ -37,7 +37,7 @@ module.exports = function(karma) {
 
 		/**
 		 * @param browsers {Array} List of browsers for Karma to run the tests against.
-		 * We can use `Chrome`, `Firefox` or `PhantomJS2` out-of-the-box here.
+		 * We can use `Chrome`, `Firefox` or `PhantomJS` out-of-the-box here.
 		 */
 		browsers: ['PhantomJS'],
 
