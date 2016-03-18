@@ -44,6 +44,8 @@ module.exports = function(karma) {
 		plugins: [
 			'karma-jasmine',
 			'karma-coverage',
+			'karma-firefox-launcher',
+			'karma-chrome-launcher',
 			'karma-phantomjs-launcher'
 		],
 

@@ -45,7 +45,6 @@ Light-weight and easy to use seed project for Angular 2 apps.
 | npm        | 3.x.x   | [http://node.org](http://nodejs.org/) |
 | Gulp CLI   | 0.4.x   | `npm install gulpjs/gulp-cli#4.0 -g`  |
 | Typings    | 0.6.x   | `npm install typings -g`              |
-| PhantomJS  | 2.1.x   | `npm install phantomjs-prebuilt -g`   |
 
 ## Install
 ```
