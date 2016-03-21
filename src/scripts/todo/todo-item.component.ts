@@ -1,13 +1,11 @@
 import {NgIf} from 'angular2/common';
-import {Component, View, Input, Output, EventEmitter} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 
 import {ITodo} from './todo.interface';
 import {TruncatePipe} from '../shared/pipes/truncate.pipe';
 
 @Component({
-	selector: 'todo-item'
-})
-@View({
+	selector: 'todo-item',
 	directives: [NgIf],
 	pipes: [TruncatePipe],
 	template: `

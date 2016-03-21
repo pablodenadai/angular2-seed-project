@@ -1,4 +1,4 @@
-import {Component, View} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 
 import {Todo} from './todo';
@@ -8,9 +8,7 @@ import {TodoService} from './todo.service';
 import {LogElement} from '../shared/directives/log-element.directive';
 
 @Component({
-	selector: 'todo-input'
-})
-@View({
+	selector: 'todo-input',
 	directives: [FORM_DIRECTIVES, LogElement],
 	template: `
 		<form (ngSubmit)="submit(todo)">

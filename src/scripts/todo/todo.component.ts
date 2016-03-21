@@ -1,5 +1,5 @@
 import {HTTP_PROVIDERS} from 'angular2/http';
-import {Component, View} from 'angular2/core';
+import {Component} from 'angular2/core';
 
 import {TodoService} from './todo.service';
 import {TodoListComponent} from './todo-list.component';
@@ -14,9 +14,7 @@ import {RestOptions, RestService} from '../shared/services/rest.service';
 		RestOptions,
 		RestService,
 		TodoService
-	]
-})
-@View({
+	],
 	directives: [TodoInputComponent, TodoListComponent],
 	template: `
 		<div class="row">

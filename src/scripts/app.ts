@@ -1,4 +1,4 @@
-import {Component, View} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
 import {TodoComponent} from './todo/todo.component';
@@ -8,9 +8,7 @@ import {AboutComponent} from './about/about.component';
 	selector: 'app',
 	providers: [
 		ROUTER_PROVIDERS
-	]
-})
-@View({
+	],
 	directives: [ROUTER_DIRECTIVES],
 	template: `
 		<div>

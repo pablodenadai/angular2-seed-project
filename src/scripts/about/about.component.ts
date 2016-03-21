@@ -1,9 +1,7 @@
-import {Component, View} from 'angular2/core';
+import {Component} from 'angular2/core';
 
 @Component({
-	selector: 'about'
-})
-@View({
+	selector: 'about',
 	templateUrl: './about.template.html'
 })
 export class AboutComponent {

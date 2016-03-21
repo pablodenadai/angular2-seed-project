@@ -1,14 +1,12 @@
 import {NgFor} from 'angular2/common';
-import {Component, View} from 'angular2/core';
+import {Component} from 'angular2/core';
 
 import {ITodo} from './todo.interface';
 import {TodoService} from './todo.service';
 import {TodoItemComponent} from './todo-item.component';
 
 @Component({
-	selector: 'todo-list'
-})
-@View({
+	selector: 'todo-list',
 	directives: [NgFor, TodoItemComponent],
 	template: `
 		<ul class="list-unstyled">
