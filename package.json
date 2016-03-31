@@ -12,7 +12,7 @@
   },
   "author": "Pabs",
   "dependencies": {
-    "angular2": "2.0.0-beta.12",
+    "angular2": "2.0.0-beta.13",
     "bootstrap": "4.0.0-alpha.2",
     "es6-promise": "3.0.2",
     "es6-shim": "0.35.0",
