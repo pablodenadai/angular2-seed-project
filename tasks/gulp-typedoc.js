@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 
 module.exports = function typedoc() {
 	return gulp.src([
-		'src/scripts/**/*!(.spec).ts',
+		'src/scripts/**/*.ts',
 		'!src/scripts/**/*.spec.ts',
 		...env.typings
 	]).pipe(plugins.typedoc({
