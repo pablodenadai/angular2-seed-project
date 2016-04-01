@@ -1,3 +1,30 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/ghpabs/angular2-seed/compare/v1.1.0...v1.1.1) (2016-04-01)
+
+
+### Bug Fixes
+
+* **build:** explicitly exclude *.spec.ts files from glob when not needed ([cb75a2c](https://github.com/ghpabs/angular2-seed/commit/cb75a2c))
+* Karma needs to have plugins defined ([3d1261b](https://github.com/ghpabs/angular2-seed/commit/3d1261b)), closes [#66](https://github.com/ghpabs/angular2-seed/issues/66)
+* Some files have bad carriage return ([e9fc1fa](https://github.com/ghpabs/angular2-seed/commit/e9fc1fa)), closes [#68](https://github.com/ghpabs/angular2-seed/issues/68)
+* Update the doc and remove useless dependency ([b0e4a7f](https://github.com/ghpabs/angular2-seed/commit/b0e4a7f)), closes [#66](https://github.com/ghpabs/angular2-seed/issues/66)
+* **unit:** add missing karma plugins and phantomjs as devDep instead of global ([2c77fd1](https://github.com/ghpabs/angular2-seed/commit/2c77fd1))
+
+### Features
+
+* **build:** split gulp tasks into partial files ([dd571c3](https://github.com/ghpabs/angular2-seed/commit/dd571c3))
+* **build:** upgrade to angular 2.0.0-beta.6 ([e45443c](https://github.com/ghpabs/angular2-seed/commit/e45443c))
+* **github:** add issue and pr templates ([e2d2c58](https://github.com/ghpabs/angular2-seed/commit/e2d2c58))
+* **github:** create .github folder and move CONTRIBUTING.md file ([1ae4e1f](https://github.com/ghpabs/angular2-seed/commit/1ae4e1f))
+* **gulp:** implement gulp assets watcher ([02ba795](https://github.com/ghpabs/angular2-seed/commit/02ba795))
+* **test:** move unit tests to src folder and e2e test to root level ([a83d9b6](https://github.com/ghpabs/angular2-seed/commit/a83d9b6)), closes [#58](https://github.com/ghpabs/angular2-seed/issues/58)
+
+### Reverts
+
+* **assets:** revert fonts and images back to original eol format ([51c797a](https://github.com/ghpabs/angular2-seed/commit/51c797a))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/ghpabs/angular2-seed/compare/v1.0.1...v1.1.0) (2016-01-07)
 

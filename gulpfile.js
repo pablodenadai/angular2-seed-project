@@ -13,7 +13,8 @@ var clean = require('./tasks/gulp-clean'),
 	karma = require('./tasks/gulp-karma'),
 	protractor = require('./tasks/gulp-protractor'),
 	livereload = require('./tasks/gulp-livereload'),
-	watch = require('./tasks/gulp-watch');
+	watch = require('./tasks/gulp-watch'),
+	changelog = require('./tasks/gulp-changelog');
 
 gulp.task('clean', clean);
 
@@ -33,3 +34,5 @@ gulp.task('unit', karma);
 gulp.task('e2e', protractor);
 
 gulp.task('docs', typedoc);
+
+gulp.task('changelog', changelog);

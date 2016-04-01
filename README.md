@@ -63,6 +63,7 @@ To view the app please open a new tab and go to `http://localhost:8080/`.
 - `$ gulp build`: Create distribution package.
 - `$ gulp serve`: Start web-server and live-reload.
 - `$ gulp docs`: Generate documentation.
+- `$ gulp changelog`: Generate `CHANGELOG.md` file from Git metadata. See [Change Log](#change-log) for more info.
 
 ### Environments
 Default: `NODE_ENV=development` and `PORT=8080`.
@@ -88,7 +89,7 @@ This project generates the `CHANGELOG.md` from Git metadata using the [conventio
 - Commit those changes
 - Make sure Travis turns green
 - Bump version in `package.json`
-- Run `npm run changelog`
+- Run `gulp changelog`
 - Commit `package.json` and `CHANGELOG.md` files
 - Tag
 - Push
