@@ -3,8 +3,6 @@
 [![Build Status](https://travis-ci.org/ghpabs/angular2-seed-project.svg?branch=master)](https://travis-ci.org/ghpabs/angular2-seed-project)
 [![Join the chat at https://gitter.im/ghpabs/angular2-seed-project](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ghpabs/angular2-seed-project)
 
-Light-weight and easy to use seed project for Angular 2 apps.
-
 <img src="http://i.imgur.com/gM0tsOZ.png" width="250px">
 
 ## Stack
