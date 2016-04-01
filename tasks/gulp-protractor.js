@@ -4,11 +4,12 @@ var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')(),
 	env = require('./../gulpfile.env');
 
-var webdriver = require('gulp-protractor').webdriver_update,
+var typescript = require('typescript'),
+	webdriver = require('gulp-protractor').webdriver_update,
 	del = require('del');
 
 var project = plugins.typescript.createProject('tsconfig.json', {
-	typescript: require('typescript'),
+	typescript,
 	module: 'commonjs'
 });
 

@@ -2,10 +2,11 @@ var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')(),
 	env = require('./../gulpfile.env');
 
-var path = require('path');
+var typescript = require('typescript'),
+	path = require('path');
 
 var project = plugins.typescript.createProject('tsconfig.json', {
-	typescript: require('typescript'),
+	typescript,
 	outFile: env.isProd ? 'app.js' : undefined
 });
 

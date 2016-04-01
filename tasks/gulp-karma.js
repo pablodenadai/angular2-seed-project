@@ -5,19 +5,20 @@ var gulp = require('gulp'),
 	env = require('./../gulpfile.env');
 
 var karma = require('karma'),
+	typescript = require('typescript'),
 	del = require('del'),
 	path = require('path'),
 	remapIstanbul = require('remap-istanbul/lib/gulpRemapIstanbul');
 
 var project = plugins.typescript.createProject('tsconfig.json', {
-	typescript: require('typescript')
+	typescript
 });
 
 function karmaClean() {
 	return del(['.karma']);
 }
 
-function karmaTypescript(root) {
+function karmaTypescript() {
 	var root = 'src/scripts';
 	var glob = 'src/scripts/**/*.ts';
 	var dest = '.karma';
