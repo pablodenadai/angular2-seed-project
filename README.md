@@ -64,6 +64,7 @@ To view the app please open a new tab and go to `http://localhost:8080/`.
 - `$ gulp e2e`: Run Protractor against all `e2e/**/*.spec.js` files. The project must be being served before running end-to-end tests.
 - `$ gulp build`: Create distribution package.
 - `$ gulp serve`: Start web-server and live-reload.
+- `$ gulp docs`: Generate documentation.
 
 ### Environments
 Default: `NODE_ENV=development` and `PORT=8080`.
