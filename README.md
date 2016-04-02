@@ -41,7 +41,7 @@
 | ---------- | ------- | ------------------------------------- |
 | NodeJS     | 5.x.x   | [http://node.org](http://nodejs.org/) |
 | npm        | 3.x.x   | [http://node.org](http://nodejs.org/) |
-| Gulp CLI   | 0.4.x   | `npm install gulpjs/gulp-cli#4.0 -g`  |
+| Gulp CLI   | 4.0.x   | `npm install gulpjs/gulp-cli#4.0 -g`  |
 | Typings    | 0.6.x   | `npm install typings -g`              |
 
 ## Install
