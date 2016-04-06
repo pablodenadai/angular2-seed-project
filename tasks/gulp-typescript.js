@@ -13,8 +13,7 @@ var project = plugins.typescript.createProject('tsconfig.json', {
 module.exports = function typescript() {
 	var root = 'src/scripts';
 	var glob = [
-		'src/scripts/**/*.ts',
-		'!src/scripts/**/*.spec.ts'
+		'src/scripts/**/!(*.spec).ts'
 	];
 	var dest = 'build/js';
 

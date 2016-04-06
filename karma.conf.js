@@ -20,7 +20,7 @@ module.exports = function(karma) {
 			 * Do not include tests or libraries.
 			 * These files will be instrumented by Istanbul.
 			 */
-			'.karma/**/*!(.spec).js': ['coverage']
+			'.karma/**/!(*.spec).js': 'coverage'
 		 },
 
 		/** Optionally, configure the reporter */
