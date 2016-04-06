@@ -1,29 +1,25 @@
+// See link below for more info about testing HTTP services
+// http://chariotsolutions.com/blog/post/testing-http-services-angular-2-jasmine/
+
 import {it, describe, expect, inject, beforeEachProviders} from 'angular2/testing';
 
 import {provide} from 'angular2/core';
-import {Http, BaseRequestOptions} from 'angular2/http';
-import {MockBackend} from 'angular2/http/testing';
+import {HTTP_PROVIDERS, XHRBackend, Response, ResponseOptions} from 'angular2/http';
+import {MockBackend, MockConnection} from 'angular2/http/testing';
 
+import {ITodo} from './todo.interface';
 import {Todo} from './todo';
 import {TodoService} from './todo.service';
 import {RestService, RestOptions} from '../shared/services/rest.service';
 
 describe('TodoService', () => {
 	beforeEachProviders(() => [
+		HTTP_PROVIDERS,
+		provide(XHRBackend, { useClass: MockBackend }),
+
 		TodoService,
 		RestService,
-		RestOptions,
-
-		MockBackend,
-		BaseRequestOptions,
-		provide(Http, {
-			useFactory: (backend: MockBackend, defaultOptions: BaseRequestOptions) => {
-				return new Http(backend, defaultOptions);
-			},
-			deps: [
-				MockBackend, BaseRequestOptions
-			]
-		})
+		RestOptions
 	]);
 
 	describe('TodoService', () => {
@@ -31,27 +27,22 @@ describe('TodoService', () => {
 			expect(service).toBeDefined();
 		}));
 
-		describe('create()', () => {
-			it('should add a new todo', inject([TodoService], (service: TodoService) => {
-				expect(service.todos.length).toBe(0);
+		describe('fetch()', () => {
+			let todoSample1 = new Todo('Go wild');
+			let todoSample2 = new Todo('Go mild');
 
-				let todo: Todo = new Todo('Water the plants');
-				service.create(todo);
+			it('should get todo list', inject([XHRBackend, TodoService], (mockBackend: MockBackend, service: TodoService) => {
+				mockBackend.connections.subscribe((connection: MockConnection) => {
+					connection.mockRespond(new Response(new ResponseOptions({
+						body: [todoSample1, todoSample2]
+					})));
+				});
 
-				expect(service.todos.length).toBe(1);
-			}));
-		});
-
-		describe('delete()', () => {
-			it('should remove a todo', inject([TodoService], (service: TodoService) => {
-				expect(service.todos.length).toBe(0);
-
-				let todo: Todo = new Todo('Water the plants');
-				service.create(todo);
-				expect(service.todos.length).toBe(1);
-
-				service.delete(todo);
-				expect(service.todos.length).toBe(0);
+				service.fetch().subscribe((data: ITodo[]) => {
+					expect(data.length).toBe(2);
+					expect(data[0].title).toBe('Go wild');
+					expect(data[1].title).toBe('Go mild');
+				});
 			}));
 		});
 	});

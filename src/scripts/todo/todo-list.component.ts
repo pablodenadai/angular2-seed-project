@@ -24,14 +24,22 @@ export class TodoListComponent {
 	constructor(
 		private todoService: TodoService
 	) {
-		this.todoService.fetch();
+		this.todoService
+			.fetch()
+			.subscribe((todos: ITodo[]) => this.todoService.todos = todos);
 	}
 
 	delete(todo: ITodo): void {
-		this.todoService.delete(todo);
+		this.todoService.todos.splice(this.todoService.todos.indexOf(todo), 1);
+
+		this.todoService
+			.delete(todo)
+			.subscribe(() => console.log('deleted!'));
 	}
 
 	update(todo: ITodo): void {
-		this.todoService.update(todo);
+		this.todoService
+			.update(todo)
+			.subscribe((todo: ITodo) => console.log('updated!', todo));
 	}
 }

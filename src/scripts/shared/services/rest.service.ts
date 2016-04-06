@@ -19,23 +19,23 @@ export class RestService {
 		private restOptions: RestOptions
 	) {}
 
-	create(path: string, body: Object): Observable<Response> {
+	create(path: string, body: Object): Observable<any> {
 		return this.request(path, RequestMethod.Post, body);
 	}
 
-	read(path: string, search?: Object): Observable<Response> {
-		return this.request(path, RequestMethod.Get, null, search);
+	read(path: string, search?: Object): Observable<any> {
+		return this.request(path, RequestMethod.Get, undefined, search);
 	}
 
-	update(path: string, body: Object): Observable<Response> {
+	update(path: string, body: Object): Observable<any> {
 		return this.request(path, RequestMethod.Put, body);
 	}
 
-	delete(path: string): Observable<Response> {
+	delete(path: string): Observable<any> {
 		return this.request(path, RequestMethod.Delete);
 	}
 
-	private request(path: string, method: RequestMethod, body?: Object, search?: Object): Observable<Response> {
+	private request(path: string, method: RequestMethod, body?: Object, search?: Object): Observable<any> {
 		let options = new RequestOptions(this.restOptions.merge({
 			method: method,
 			url: this.restOptions.url + path,
@@ -43,7 +43,9 @@ export class RestService {
 			search: this.serialize(search)
 		}));
 
-		return this.http.request(new Request(options));
+		return this.http
+			.request(new Request(options))
+			.map((res: Response) => res.json());
 	}
 
 	private serialize(obj: Object): string {

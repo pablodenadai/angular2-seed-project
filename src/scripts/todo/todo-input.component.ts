@@ -33,7 +33,12 @@ export class TodoInputComponent {
 			return;
 		}
 
-		this.todoService.create(todo);
+		this.todoService.todos.unshift(todo);
+
+		this.todoService
+			.create(todo)
+			.subscribe((todo: ITodo) => console.log('created!', todo));
+
 		this.todo = new Todo();
 	}
 }
