@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 
 var path = require('path');
 
-module.exports = function index() {
+gulp.task('index', () => {
 	var css = ['build/css/*'];
 	var libs = env.isProd ?
 		['build/libs/*'] :
@@ -19,4 +19,4 @@ module.exports = function index() {
 		.pipe(plugins.preprocess({ context: env }))
 		.pipe(gulp.dest('build'))
 		.pipe(plugins.connect.reload());
-}
+});

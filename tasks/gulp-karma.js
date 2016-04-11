@@ -23,25 +23,25 @@ function karmaTypescript() {
 	var glob = 'src/scripts/**/*.ts';
 	var dest = '.karma';
 
-	var result = gulp.src([glob, ...env.typings])
+	return gulp.src(glob)
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'))
 		.pipe(plugins.preprocess({ context: env }))
 		.pipe(plugins.inlineNg2Template({ useRelativePaths: true }))
+		.pipe(gulp.src(env.typings, { passthrough: true }))
 		.pipe(plugins.sourcemaps.init())
-		.pipe(plugins.typescript(project));
-
-	return result.js
+		.pipe(plugins.typescript(project)).js
 		.pipe(plugins.sourcemaps.write({
-			sourceRoot: path.join(__dirname, '../', root)
+			includeContent: false,
+			sourceRoot: path.join(process.cwd(), root)
 		}))
-		.pipe(plugins.size({ title: 'typescript' }))
+		.pipe(plugins.size({ title: 'karmaTypescript' }))
 		.pipe(gulp.dest(dest));
 }
 
 function karmaRun(done) {
 	return new karma.Server({
-		configFile: path.join(__dirname, '../karma.conf.js')
+		configFile: path.join(process.cwd(), 'karma.conf.js')
 	}, done).start();
 }
 
@@ -52,13 +52,13 @@ function karmaRemapIstanbul() {
 				json: 'coverage/json/coverage-ts.json',
 				html: 'coverage/html-report'
 			}
-	}));
+		}));
 }
 
-module.exports = gulp.series(
+gulp.task('unit', gulp.series(
 	karmaClean,
 	karmaTypescript,
 	karmaRun,
 	karmaRemapIstanbul,
 	karmaClean
-);
+));

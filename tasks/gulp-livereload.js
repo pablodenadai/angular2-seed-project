@@ -6,13 +6,12 @@ var gulp = require('gulp'),
 
 var history = require('connect-history-api-fallback');
 
-module.exports = function livereload() {
+gulp.task('livereload', () => {
 	return plugins.connect.server({
 		root: 'build',
 		livereload: true,
 		port: env.PORT,
-
 		// Add support for HTML5 routing mode
 		middleware: (connect, opt) => [history()]
 	});
-};
+});

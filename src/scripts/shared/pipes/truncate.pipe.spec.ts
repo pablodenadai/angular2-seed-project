@@ -9,15 +9,15 @@ describe('TruncatePipe', () => {
 		pipe = new TruncatePipe();
 	});
 
-	it('transforms "Hello World!" to "Hello"', () => {
+	it('should transform "Hello World!" to "Hello"', () => {
 		expect(pipe.transform('Hello World!', ['5'])).toEqual('Hello');
 	});
 
-	it('transforms "Hello World!" to "Hello..."', () => {
+	it('should transform "Hello World!" to "Hello..."', () => {
 		expect(pipe.transform('Hello World!', ['5', '...'])).toEqual('Hello...');
 	});
 
-	it('leaves "Hello World!" unchanged', () => {
+	it('should leave "Hello World!" unchanged', () => {
 		expect(pipe.transform('Hello World!', [])).toEqual('Hello World!');
 	});
 });

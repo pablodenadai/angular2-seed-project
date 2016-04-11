@@ -22,12 +22,11 @@ function protractorTypescript() {
 	var glob = 'e2e/**/*.ts';
 	var dest = '.protractor';
 
-	var result = gulp.src([glob, ...env.typings])
+	return gulp.src(glob)
 		.pipe(plugins.tslint())
 		.pipe(plugins.tslint.report('verbose'))
-		.pipe(plugins.typescript(project));
-
-	return result.js
+		.pipe(gulp.src(env.typings, { passthrough: true }))
+		.pipe(plugins.typescript(project)).js
 		.pipe(plugins.size({ title: 'typescript' }))
 		.pipe(gulp.dest(dest));
 }
@@ -44,10 +43,10 @@ function protractorRun() {
 		.on('error', e => { throw e })
 }
 
-module.exports = gulp.series(
+gulp.task('e2e', gulp.series(
 	protractorClean,
 	protractorTypescript,
 	protractorUpdateWebdriver,
 	protractorRun,
 	protractorClean
-);
+));

@@ -1,7 +1,8 @@
 'use strict';
 
-var del = require('del');
+var gulp = require('gulp'),
+	del = require('del');
 
-module.exports = function clean() {
+gulp.task('clean', () => {
 	return del(['docs', 'coverage', 'build', '.karma', '.protractor']);
-};
+});

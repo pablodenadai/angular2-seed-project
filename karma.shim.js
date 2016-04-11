@@ -55,7 +55,7 @@ System.import('angular2/platform/browser').then(function(browser_adapter) {
 .then(function() {
 	__karma__.start();
 }, function(error) {
-	__karma__.error(error.stack || error);
+	__karma__.error(error.stack || String(error));
 });
 
 function filePath2moduleName(filePath) {

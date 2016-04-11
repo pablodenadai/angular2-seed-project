@@ -2,37 +2,27 @@
 
 var gulp = require('gulp');
 
-var clean = require('./tasks/gulp-clean'),
-	scss = require('./tasks/gulp-scss'),
-	typescript = require('./tasks/gulp-typescript'),
-	images = require('./tasks/gulp-images'),
-	fonts = require('./tasks/gulp-fonts'),
-	libs = require('./tasks/gulp-libs'),
-	index = require('./tasks/gulp-index'),
-	typedoc = require('./tasks/gulp-typedoc'),
-	karma = require('./tasks/gulp-karma'),
-	protractor = require('./tasks/gulp-protractor'),
-	livereload = require('./tasks/gulp-livereload'),
-	watch = require('./tasks/gulp-watch'),
-	changelog = require('./tasks/gulp-changelog');
-
-gulp.task('clean', clean);
+require('./tasks/gulp-clean'),
+require('./tasks/gulp-scss'),
+require('./tasks/gulp-typescript'),
+require('./tasks/gulp-images'),
+require('./tasks/gulp-fonts'),
+require('./tasks/gulp-libs'),
+require('./tasks/gulp-index'),
+require('./tasks/gulp-typedoc'),
+require('./tasks/gulp-karma'),
+require('./tasks/gulp-protractor'),
+require('./tasks/gulp-livereload'),
+require('./tasks/gulp-watch'),
+require('./tasks/gulp-changelog');
 
 gulp.task('build', gulp.series(
-	clean,
-	gulp.parallel(scss, typescript, images, fonts, libs),
-	index
+	'clean',
+	gulp.parallel('scss', 'typescript', 'images', 'fonts', 'libs'),
+	'index'
 ));
 
 gulp.task('serve', gulp.parallel(
-	watch,
-	livereload
+	'watch',
+	'livereload'
 ));
-
-gulp.task('unit', karma);
-
-gulp.task('e2e', protractor);
-
-gulp.task('docs', typedoc);
-
-gulp.task('changelog', changelog);

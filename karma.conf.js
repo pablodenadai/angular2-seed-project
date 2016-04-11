@@ -5,15 +5,28 @@ var env = require('./gulpfile.env');
 module.exports = function(karma) {
 	var config = {
 		basePath: '',
+		/**
+		 * @param browsers {Array} List of browsers for Karma to run the tests against.
+		 * We can use `Chrome`, `Firefox` or `PhantomJS` out-of-the-box here.
+		 */
+		browsers: ['PhantomJS'],
 		frameworks: ['jasmine'],
-
 		files: [
 			...env.test.libs.js,
 			{ pattern: '.karma/**/*.js', included: false }
 		],
-
-		reporters: ['progress', 'coverage'],
-
+		plugins: [
+			'karma-jasmine',
+			'karma-coverage',
+			'karma-spec-reporter',
+			'karma-firefox-launcher',
+			'karma-chrome-launcher',
+			'karma-phantomjs-launcher'
+		],
+		reporters: [
+			'spec',
+			'coverage'
+		],
 		preprocessors: {
 			/**
 			 * Source files, that you want to generate coverage for.
@@ -21,34 +34,16 @@ module.exports = function(karma) {
 			 * These files will be instrumented by Istanbul.
 			 */
 			'.karma/**/!(*.spec).js': 'coverage'
-		 },
-
-		/** Optionally, configure the reporter */
+		},
 		coverageReporter: {
 			type: 'json',
 			subdir: './json',
 			file: 'coverage-js.json'
 		},
-
 		singleRun: true,
 		port: 9876,
 		colors: true,
 		logLevel: karma.LOG_INFO,
-
-		/**
-		 * @param browsers {Array} List of browsers for Karma to run the tests against.
-		 * We can use `Chrome`, `Firefox` or `PhantomJS` out-of-the-box here.
-		 */
-		browsers: ['PhantomJS'],
-
-		plugins: [
-			'karma-jasmine',
-			'karma-coverage',
-			'karma-firefox-launcher',
-			'karma-chrome-launcher',
-			'karma-phantomjs-launcher'
-		],
-
 		customLaunchers: {
 			ChromeTravisCI: {
 				base: 'Chrome',
