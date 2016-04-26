@@ -1,4 +1,5 @@
 require('reflect-metadata');
+require('zone.js');
 
 exports.config = {
 	framework: 'jasmine2',
