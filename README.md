@@ -78,7 +78,7 @@ Default: `NODE_ENV=development` and `PORT=8080`.
 ## Ecosystem
 You might have noticed that we have quite a few files in our `root` folder. You might also be wondering why we need them and whether they are applicable to your use case. Here is a brief explanation:
 
-- **.travis.yml**: Travis is our Continuos Integration (CI) server and this is its configuration file. We have added hooks to GitHub so automated tests will kick in after each commit.
+- **.travis.yml**: Travis is our Continuous Integration (CI) server and this is its configuration file. We have added hooks to GitHub so automated tests will kick in after each commit.
 - **karma.shim.js**: Unit testing Angular2 apps is still in its early days and this file helps us setup the test runner - Karma.
 
 ## Change Log
