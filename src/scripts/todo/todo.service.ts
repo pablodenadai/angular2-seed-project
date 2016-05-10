@@ -1,7 +1,5 @@
-import 'rxjs/add/operator/map';
-
-import {Observable} from 'rxjs';
-import {Injectable} from 'angular2/core';
+import {Observable} from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
 
 import {RestService} from '../shared/services/rest.service';
 import {ITodo} from './todo.interface';

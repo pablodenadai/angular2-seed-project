@@ -1,4 +1,4 @@
-import {it, describe, expect, beforeEach} from 'angular2/testing';
+import {it, describe, expect, beforeEach} from '@angular/core/testing';
 
 import {App} from './app.page';
 

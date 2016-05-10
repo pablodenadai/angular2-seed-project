@@ -1,5 +1,5 @@
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {Component} from 'angular2/core';
+import {HTTP_PROVIDERS} from '@angular/http';
+import {Component} from '@angular/core';
 
 import {TodoService} from './todo.service';
 import {TodoListComponent} from './todo-list.component';

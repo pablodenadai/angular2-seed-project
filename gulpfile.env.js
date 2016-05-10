@@ -8,16 +8,15 @@ let baseLibs = [
 	'node_modules/systemjs/dist/system.js',
 	'node_modules/es6-shim/es6-shim.js',
 	'node_modules/rxjs/bundles/Rx.js',
-	'node_modules/angular2/bundles/angular2-polyfills.js',
-	'node_modules/angular2/bundles/angular2.dev.js',
-	'node_modules/angular2/bundles/router.dev.js',
-	'node_modules/angular2/bundles/http.dev.js',
+	'node_modules/zone.js/dist/zone.js',
+	'node_modules/reflect-metadata/Reflect.js',
+	// 'node_modules/@angular/**/*.js',
+
 	'node_modules/lodash/index.js'
 ];
 
 var paths = {
 	typings: [
-		'node_modules/angular2/typings/browser.d.ts',
 		'typings/main.d.ts'
 	],
 
@@ -43,7 +42,9 @@ var paths = {
 		libs: {
 			js: [
 				...baseLibs,
-				'node_modules/angular2/bundles/testing.dev.js',
+				'node_modules/zone.js/dist/jasmine-patch.js',
+	      'node_modules/zone.js/dist/async-test.js',
+	      'node_modules/zone.js/dist/fake-async-test.js',
 				'karma.shim.js'
 			]
 		}

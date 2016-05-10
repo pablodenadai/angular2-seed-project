@@ -4,7 +4,7 @@ var env = require('./gulpfile.env');
 
 module.exports = function(karma) {
 	var config = {
-		basePath: '',
+		basePath: './',
 		/**
 		 * @param browsers {Array} List of browsers for Karma to run the tests against.
 		 * We can use `Chrome`, `Firefox` or `PhantomJS` out-of-the-box here.
@@ -13,7 +13,15 @@ module.exports = function(karma) {
 		frameworks: ['jasmine'],
 		files: [
 			...env.test.libs.js,
-			{ pattern: '.karma/**/*.js', included: false }
+			// Paths loaded via module imports
+      // RxJs.
+      { pattern: 'node_modules/rxjs/**/*.js', included: false },
+      { pattern: 'node_modules/rxjs/**/*.js.map', included: false },
+      // Angular itself
+      { pattern: 'node_modules/@angular/**/*.js', included: false },
+      { pattern: 'node_modules/@angular/**/*.js.map', included: false },
+      // Our built application code
+      { pattern: '.karma/**/*.js', included: false }
 		],
 		plugins: [
 			'karma-jasmine',

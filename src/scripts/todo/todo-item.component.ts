@@ -1,5 +1,5 @@
-import {NgIf} from 'angular2/common';
-import {Component, Input, Output, EventEmitter} from 'angular2/core';
+import {NgIf} from '@angular/common';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 import {ITodo} from './todo.interface';
 import {TruncatePipe} from '../shared/pipes/truncate.pipe';

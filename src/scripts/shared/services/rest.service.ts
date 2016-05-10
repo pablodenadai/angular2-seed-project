@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/map';
 
-import {Observable} from 'rxjs';
-import {Injectable} from 'angular2/core';
-import {Http, Request, Response, RequestMethod, RequestOptions, BaseRequestOptions} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Http, Request, Response, RequestMethod, RequestOptions, BaseRequestOptions} from '@angular/http';
 
 export class RestOptions extends BaseRequestOptions {
 	constructor() {

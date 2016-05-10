@@ -1,11 +1,11 @@
 // See link below for more info about testing HTTP services
 // http://chariotsolutions.com/blog/post/testing-http-services-angular-2-jasmine/
 
-import {it, describe, expect, inject, beforeEachProviders} from 'angular2/testing';
+import {it, describe, expect, inject, beforeEachProviders} from '@angular/core/testing';
 
-import {provide} from 'angular2/core';
-import {HTTP_PROVIDERS, XHRBackend, Response, ResponseOptions} from 'angular2/http';
-import {MockBackend, MockConnection} from 'angular2/http/testing';
+import {provide} from '@angular/core';
+import {HTTP_PROVIDERS, XHRBackend, Response, ResponseOptions} from '@angular/http';
+import {MockBackend, MockConnection} from '@angular/http/testing';
 
 import {ITodo} from './todo.interface';
 import {Todo} from './todo';

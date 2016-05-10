@@ -1,5 +1,5 @@
-import {NgFor} from 'angular2/common';
-import {Component} from 'angular2/core';
+import {NgFor} from '@angular/common';
+import {Component} from '@angular/core';
 
 import {ITodo} from './todo.interface';
 import {TodoService} from './todo.service';

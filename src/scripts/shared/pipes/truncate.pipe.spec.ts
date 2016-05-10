@@ -1,4 +1,4 @@
-import {it, describe, expect} from 'angular2/testing';
+import {it, describe, expect} from '@angular/core/testing';
 
 import {TruncatePipe} from './truncate.pipe';
 

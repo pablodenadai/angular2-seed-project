@@ -1,4 +1,4 @@
-import {Pipe} from 'angular2/core';
+import {Pipe} from '@angular/core';
 
 /**
  * Truncate a string to the given length and append suffix.
