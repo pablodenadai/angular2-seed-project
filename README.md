@@ -1,3 +1,9 @@
+## DEPRECATED
+
+Alternatives:
+- Angular 2 Official CLI: [https://cli.angular.io/](https://cli.angular.io/)
+- Angular 2 Official Seed: [https://github.com/angular/angular2-seed](https://github.com/angular/angular2-seed)
+
 # Angular 2 - Seed Project
 
 [![Build Status](https://travis-ci.org/ghpabs/angular2-seed-project.svg?branch=master)](https://travis-ci.org/ghpabs/angular2-seed-project)
